@@ -2,16 +2,24 @@
 
 Este repositório contém o desenvolvimento de um protótipo de **Business Intelligence (BI)** focado em **Manutenção Preditiva (CBM)** para a gestão da saúde de motores turbofan. O projeto visa transformar dados brutos de sensores em *insights* de negócio valiosos, demonstrando como otimizar operações críticas, aumentar a segurança e gerar economia significativa para a indústria aeronáutica.
 
-O trabalho foi apresentado como aprovação na disciplina ECM401 Banco de Dados, do Instituto Mauá de Tecnologia, pelos autores André Maiolini, Durval Consorti, Leonardo Roberto e Lucas Castanho.
+> O trabalho foi apresentado como aprovação na disciplina ECM401 Banco de Dados, do Instituto Mauá de Tecnologia.
+
+## Integrantes do Grupo 
+
+| Nome | R.A. |
+| ---- | ---- |
+| André Solano F. R. Maiolini | 19.02012-0 |
+| Durval Consorti Soranz de Barros Santos | 22.01097-0 |
+| Leonardo Roberto Amadio | 22.01300-8 |
 
 ## 💡 Problema de Negócio e Proposta
 
 O problema de negócio a ser resolvido é o alto custo e a ineficiência associados à manutenção não programada e à manutenção preventiva baseada em cronogramas fixos. A abordagem tradicional, a Manutenção Baseada no Tempo (TBM), é segura, mas inerentemente ineficiente e cara.
 
 Nossa proposta é desenvolver um **Cockpit de Saúde da Frota**:
-* **Sistema de BI** que serve como prova de conceito (proof of concept) de um DataMart e um dashboard gerencial.
-* **Objetivo de Negócio:** Transformar dados brutos de sensores em indicadores acionáveis, permitindo decisões proativas para aumentar a segurança, reduzir custos com manutenção não programada e otimizar a disponibilidade da frota.
-* Relatórios da indústria sugerem que a manutenção preditiva pode reduzir custos gerais de manutenção em 15-20% e diminuir paradas não planejadas em até 50%.
+* ✅ **Sistema de BI** que serve como prova de conceito (proof of concept) de um DataMart e um dashboard gerencial.
+* ✈️ **Objetivo de Negócio:** Transformar dados brutos de sensores em indicadores acionáveis, permitindo decisões proativas para aumentar a segurança, reduzir custos com manutenção não programada e otimizar a disponibilidade da frota.
+* 📉 **Relatórios da indústria sugerem que a manutenção preditiva pode reduzir custos gerais de manutenção em 15-20% e diminuir paradas não planejadas em até 50%**.
 
 ## ⚙️ Arquitetura e Componentes
 
@@ -19,7 +27,7 @@ O projeto implementa uma solução de BI completa, que inclui modelagem operacio
 
 | Componente | Descrição |
 | :--- | :--- |
-| **Dataset Fonte** | **Turbofan Engine Degradation Simulation Dataset** (C-MAPSS) da NASA. É um dataset público considerado um padrão para o desenvolvimento de sistemas de prognóstico. |
+| **Dataset Fonte** | [**NASA Turbofan Jet Engine Data Set**](https://www.kaggle.com/datasets/behrad3d/nasa-cmaps) (C-MAPSS) da NASA - obtido através da plataforma [Kaggle](https://www.kaggle.com/). É um dataset público considerado um padrão para o desenvolvimento de sistemas de prognóstico. |
 | **Base OLTP** | Modelagem e implementação da base de dados operacional em **PostgreSQL** a partir dos dados brutos. |
 | **DataMart** | Construção de um **Modelo Dimensional (Star Schema)**. O DataMart é **enriquecido com dimensões de negócio** hipotéticas, mas realistas, como Frota/Cliente e Custo de Manutenção. |
 | **Processo ETL** | Desenvolvimento do processo de **Extração, Transformação e Carga (ETL)** para popular o DataMart. |
