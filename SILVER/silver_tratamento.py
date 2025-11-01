@@ -4,14 +4,18 @@ from pyspark.sql import SparkSession
 
 print("--- Iniciando ETL Bronze-para-Silver ---")
 load_dotenv()
-os.environ['HADOOP_HOME'] = 'C:\\hadoop'
 
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_URL = "jdbc:mysql://localhost:3306/nasa_cmaps"
-DB_PROPERTIES = {
-    "user": DB_USER,
-    "password": DB_PASSWORD,
+db_host = os.getenv("DB_HOST", "localhost")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+
+if not db_user or not db_password:
+    raise ValueError("Variáveis de ambiente DB_USER ou DB_PASSWORD não encontradas.")
+
+db_url = f"jdbc:mysql://{db_host}:3306/nasa_cmaps"
+db_properties = {
+    "user": db_user,
+    "password": db_password,
     "driver": "com.mysql.cj.jdbc.Driver"
 }
 
@@ -30,9 +34,9 @@ try:
 
     print(f"Lendo dados da tabela Bronze: {BRONZE_TABLE}...")
     bronze_df = spark.read.jdbc(
-        url=DB_URL,
+        url=db_url,
         table=BRONZE_TABLE,
-        properties=DB_PROPERTIES
+        properties=db_properties
     )
     
     bronze_df.cache()
@@ -45,7 +49,7 @@ try:
                             .withColumnRenamed("unit_nr", "motor_nr")
     
     dim_motor_df.write.mode("append").jdbc(
-        url=DB_URL, table=SILVER_DIM_MOTOR, properties=DB_PROPERTIES
+        url=db_url, table=SILVER_DIM_MOTOR, properties=db_properties
     )
     print(f"Dimensão {SILVER_DIM_MOTOR} carregada.")
 
@@ -54,16 +58,16 @@ try:
                                    .distinct()
 
     dim_configuracao_df.write.mode("append").jdbc(
-        url=DB_URL, table=SILVER_DIM_CONFIG, properties=DB_PROPERTIES
+        url=db_url, table=SILVER_DIM_CONFIG, properties=db_properties
     )
     print(f"Dimensão {SILVER_DIM_CONFIG} carregada.")
 
     print("Lendo dimensões de volta para obter as chaves...")
     dim_motor_com_keys_df = spark.read.jdbc(
-        url=DB_URL, table=SILVER_DIM_MOTOR, properties=DB_PROPERTIES
+        url=db_url, table=SILVER_DIM_MOTOR, properties=db_properties
     )
     dim_config_com_keys_df = spark.read.jdbc(
-        url=DB_URL, table=SILVER_DIM_CONFIG, properties=DB_PROPERTIES
+        url=db_url, table=SILVER_DIM_CONFIG, properties=db_properties
     )
 
     sensor_cols = [f'sensor{i}' for i in range(1, 22)]
@@ -94,7 +98,7 @@ try:
     print(f"Carregando Tabela Fato: {SILVER_FACT_LEITURA}...")
     
     fact_df.repartition(4).write.mode("append").jdbc(
-        url=DB_URL, table=SILVER_FACT_LEITURA, properties=DB_PROPERTIES
+        url=db_url, table=SILVER_FACT_LEITURA, properties=db_properties
     )
 
     print("\n--- SUCESSO! ETL Bronze-para-Silver concluído. ---")

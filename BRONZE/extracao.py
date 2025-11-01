@@ -10,8 +10,8 @@ load_dotenv()
 warnings.filterwarnings("ignore")
 
 col_names = ['unit_nr', 'cycle', 'setting1', 'setting2', 'setting3'] + [f'sensor{i}' for i in range(1, 22)]
-directory_path = r"D:\GitHub\ECM401_DataMart\BRONZE"
-file_pattern = os.path.join(directory_path, '*.txt')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+file_pattern = os.path.join(script_dir, '*.txt')
 
 try:
     file_paths = glob.glob(file_pattern)
@@ -53,7 +53,6 @@ except Exception as e:
 
 print("\n--- Etapa 2: Iniciando Spark e convertendo DataFrame ---")
 
-os.environ['HADOOP_HOME'] = 'C:\\hadoop'
 from pyspark.sql import SparkSession
 
 try:
@@ -68,17 +67,21 @@ try:
 
     print("\n--- Etapa 3: Gravando dados no MySQL ---")
     
-    mysql_url = "jdbc:mysql://localhost:3306/nasa_cmaps" 
+    db_host = os.getenv("DB_HOST", "localhost") # Padrão para 'localhost' se não definido
+    db_user = os.getenv("DB_USER")
+    db_password = os.getenv("DB_PASSWORD")
+    db_database = "nasa_cmaps"
     mysql_table = "bronze_fd00x"
-    
+
+    if not db_user or not db_password:
+        raise ValueError("Variáveis de ambiente DB_USER ou DB_PASSWORD não encontradas.")
+
+    mysql_url = f"jdbc:mysql://{db_host}:3306/{db_database}"
     mysql_properties = {
-        "user": os.getenv("DB_USER"),
-        "password": os.getenv("DB_PASSWORD"),
+        "user": db_user,
+        "password": db_password,
         "driver": "com.mysql.cj.jdbc.Driver"
     }
-
-    if not mysql_properties["user"] or not mysql_properties["password"]:
-        raise ValueError("Variáveis DB_USER ou DB_PASSWORD não encontradas no .env")
 
     # 3.2. Escreva os dados
     print(f"Iniciando gravação no MySQL (tabela: {mysql_table})...")

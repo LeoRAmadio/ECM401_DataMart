@@ -1,0 +1,24 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3307:3306" # Resolve conflito com serviço MySQL80
+    volumes:
+      - ./BRONZE/cria_schema.sql:/docker-entrypoint-initdb.d/1_cria_schema_bronze.sql
+      - ./SILVER/silver_script.sql:/docker-entrypoint-initdb.d/2_cria_schema_silver.sql
+
+  app:
+    build: .
+    container_name: etl-app
+    depends_on:
+      - mysql-db
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
