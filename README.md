@@ -48,7 +48,59 @@ A arquitetura de BI proposta deverá permitir análises que respondam a pergunta
 
 ## 🚀 Tecnologias
 
+* **Containerização:** Docker, Docker Compose
 * **Modelagem de Dados:** Star Schema (DataMart)
-* **Banco de Dados:** PostgreSQL (OLTP e DataMart)
-* **Processamento:** ETL (Extração, Transformação e Carga)
-* **Visualização/BI:** Power BI ou Tableau
+* **Banco de Dados:** MySQL (OLTP e DataMart)
+* **Processamento ETL:**  Python, Pandas, Apache Spark (via PySpark)
+* **Visualização/BI:** Power BI 
+
+## 🛠️ Como Executar o Projeto
+
+O projeto é completamente orquestrado com Docker Compose. Siga os passos abaixo para executar o pipeline completo.
+
+* **Pré-requisitos**: Docker Desktop instaldo e em execução na sua máquina.
+
+### 1. Configuração do Ambiente
+
+Na raiz do projeto, crie um arquivo chamado `.env` e copie o conteúdo abaixo para ele. Este arquivo fornecerá as credenciais de acesso para o banco de dados.
+
+```
+DB_HOST=mysql-db
+DB_USER=user
+DB_PASSWORD=password
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=nasa_cmaps
+```
+
+### 2. Executando o Pipeline ETL
+
+Abra um terminal na pasta raiz do projeto (onde o arquivo `docker-compose.yml` está localizado) e execute o seguinte comando:
+```bash
+docker-compose up --build
+```
+
+Este comando irá:
+1. Construir a imagem Docker da aplicação, instalando Java, Python e as dependências do Spark;
+2. Iniciar um contêiner para o banco de dados MySQL e criar os chemas das tabelas;
+3. Iniciar o contêiner da aplicação, que executará os scripts `extracao.py` e `silver_tratamento.py` em sequência, populando as tabelas Bronze e Silver;
+
+### 3. Verificando o Resultado
+
+Após a execução, você pode se conectar ao banco de dados MySQL para verificar se as tabelas foram populadas. Use um cliente de banco de dados como MySQL Workbench com os seguintes parâmetros:
+
+| Parâmetro | Valor |
+|-------|-----------|
+| Host | localhost |
+| Porta | 3307 |
+| Database | nasa_cmaps |
+| Usuário | user |
+| Senha | password |
+
+Execute uma consulta como: `SELECT COUNT(*) FROM fact_leitura_ciclo;` para confirmar.
+
+### 4. Parando o Ambiente
+
+Para parar e remover todos os contêineres e redes criadas, pressione `Ctrl + C` no terminal onde o compose está rodando, ou abra um novo terminal e execute:
+```bash
+docker-compose down
+```
