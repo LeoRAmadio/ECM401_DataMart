@@ -1,11 +1,13 @@
 USE nasa_cmaps;
 
+DROP TABLE IF EXISTS fact_leitura_ciclo; 
+
 DROP TABLE IF EXISTS dim_motor;
 CREATE TABLE dim_motor (
     unit_id INT AUTO_INCREMENT PRIMARY KEY,
-    fd_id INT,  
+    fd_id INT,
     motor_nr INT,
-    UNIQUE KEY uk_motor (fd_id, motor_nr) 
+    UNIQUE KEY uk_motor (fd_id, motor_nr)
 );
 
 DROP TABLE IF EXISTS dim_configuracao;
@@ -17,11 +19,18 @@ CREATE TABLE dim_configuracao (
     UNIQUE KEY uk_config (setting1, setting2, setting3)
 );
 
-DROP TABLE IF EXISTS fact_leitura_ciclo;
+DROP TABLE IF EXISTS dim_ciclo;
+CREATE TABLE dim_ciclo (
+    cycle_id INT AUTO_INCREMENT PRIMARY KEY,
+    cycle_nr INT,
+    UNIQUE KEY uk_cycle (cycle_nr)
+);
+
 CREATE TABLE fact_leitura_ciclo (
-    unit_id_fk INT, 
-    cycle INT,
+    leitura_id INT AUTO_INCREMENT PRIMARY KEY,
+    unit_id_fk INT,
     setting_id_fk INT,
+    cycle_id_fk INT,
     sensor1 DOUBLE,
     sensor2 DOUBLE,
     sensor3 DOUBLE,
@@ -43,9 +52,8 @@ CREATE TABLE fact_leitura_ciclo (
     sensor19 DOUBLE,
     sensor20 DOUBLE,
     sensor21 DOUBLE,
-
-    PRIMARY KEY (unit_id_fk, cycle), 
     
     FOREIGN KEY (unit_id_fk) REFERENCES dim_motor(unit_id),
-    FOREIGN KEY (setting_id_fk) REFERENCES dim_configuracao(setting_id)
+    FOREIGN KEY (setting_id_fk) REFERENCES dim_configuracao(setting_id),
+    FOREIGN KEY (cycle_id_fk) REFERENCES dim_ciclo(cycle_id)
 );
