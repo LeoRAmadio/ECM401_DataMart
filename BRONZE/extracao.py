@@ -67,7 +67,7 @@ try:
 
     print("\n--- Etapa 3: Gravando dados no MySQL ---")
     
-    db_host = os.getenv("DB_HOST", "localhost") # Padrão para 'localhost' se não definido
+    db_host = os.getenv("DB_HOST", "localhost")
     db_user = os.getenv("DB_USER")
     db_password = os.getenv("DB_PASSWORD")
     db_database = "nasa_cmaps"
@@ -83,7 +83,6 @@ try:
         "driver": "com.mysql.cj.jdbc.Driver"
     }
 
-    # 3.2. Escreva os dados
     print(f"Iniciando gravação no MySQL (tabela: {mysql_table})...")
     
     spark_df.write \
