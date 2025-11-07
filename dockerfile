@@ -15,14 +15,5 @@ COPY requirements.txt .
 # Instala as dependências
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Copia os diretórios do seu projeto para dentro do contêiner
-COPY BRONZE/ ./BRONZE/
-COPY SILVER/ ./SILVER/
-COPY GOLD/ ./GOLD/
-
-# Copia o script de execução 
-COPY run.sh .
-RUN chmod +x run.sh
-
 # Comando para iniciar o script
 CMD ["./run.sh"]

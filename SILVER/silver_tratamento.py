@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 
-print("--- Iniciando ETL Bronze-para-Silver (v2.3 com joins corrigidos) ---")
+print("--- Iniciando ETL Bronze-para-Silver ---")
 load_dotenv()
 
 db_host = os.getenv("DB_HOST", "localhost") 
@@ -112,7 +112,7 @@ try:
         url=db_url, table=SILVER_FACT_LEITURA, properties=db_properties
     )
 
-    print("\n--- SUCESSO! ETL Bronze-para-Silver (v2.3) concluído. ---")
+    print("\n--- SUCESSO! ETL Bronze-para-Silver concluído. ---")
 
 except Exception as e:
     print(f"\nOcorreu um erro fatal durante o ETL: {e}")

@@ -22,3 +22,8 @@ services:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./BRONZE:/app/BRONZE
+      - ./SILVER:/app/SILVER
+      - ./GOLD:/app/GOLD
+      - ./run.sh:/app/run.sh
