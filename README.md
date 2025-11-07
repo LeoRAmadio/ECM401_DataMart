@@ -2,7 +2,7 @@
 
 Este repositório contém o desenvolvimento de um protótipo de **Business Intelligence (BI)** focado em **Manutenção Preditiva (CBM)** para a gestão da saúde de motores turbofan. O projeto visa transformar dados brutos de sensores em *insights* de negócio valiosos, demonstrando como otimizar operações críticas, aumentar a segurança e gerar economia significativa para a indústria aeronáutica.
 
-> O trabalho foi apresentado como aprovação na disciplina ECM401 Banco de Dados, do Instituto Mauá de Tecnologia.
+> O trabalho foi desenvolvido para aprovação na disciplina ECM401 Banco de Dados, do Instituto Mauá de Tecnologia.
 
 ## Integrantes do Grupo 
 
@@ -39,12 +39,27 @@ O projeto implementa uma solução de BI completa, que inclui modelagem operacio
 
 A arquitetura de BI proposta deverá permitir análises que respondam a perguntas críticas para a gestão de manutenção e operações:
 
-* Qual o status geral de saúde da frota de motores, categorizado por nível de risco (Crítico, Observação, Saudável)?
-* Quais são os motores específicos que apresentam o maior risco de falha iminente (menor RUL)?
-* Existe diferença significativa na taxa de degradação (queda do RUL) entre diferentes frotas de clientes ou regiões operacionais?
-* Qual o custo total evitado por meio da realização de manutenções preditivas em comparação com o custo estimado de falhas não programadas?
-* Quais parâmetros operacionais (altitude, velocidade, potência) estão mais correlacionados com uma aceleração na degradação do motor?
-* Para um motor específico em alerta, quais sensores estão apresentando o comportamento mais anômalo, auxiliando no diagnóstico da causa raiz?
+* **Pergunta (1)**: Quais sensores apresentam maior sensibilidade à degradação ao longo dos ciclos de operação?
+    - **Objetivo**: Ajuda a identificar quais variáveis são mais relevantes para diagnósticos de saúde do motor.
+
+* **Pergunta (2)**: Como a taxa média de degradação (queda de RUL) varia entre diferentes cenários de teste (FD001–FD004)?
+    - **Objetivo**: Permite comparar o impacto das condições operacionais sobre a confiabilidade.
+
+* **Pergunta (3)**: Quais motores demonstram comportamento anômalo em relação à média do grupo?
+    - **Objetivo**: Detecta possíveis desvios experimentais ou diferenças no padrão de desgaste.
+
+* **Pergunta (4)**: Quais parâmetros operacionais (altitude, Mach, ângulo de manete) mais influenciam a redução da vida útil?
+    - **Objetivo**: Gera insights sobre o impacto das condições de voo na durabilidade.
+
+* **Pergunta (5)**: Em média, qual é o ciclo de falha esperado para cada tipo de cenário?
+    - **Objetivo**: Estabelece benchmarks internos de confiabilidade.
+
+* **Pergunta (6)**: É possível identificar correlação entre sensores específicos antes da falha?
+    - **Objetivo**: Permite mapear interdependência entre subsistemas (compressor, turbina, etc.).
+
+* **Pergunta (7)**: Como o comportamento temporal dos sensores evolui nos últimos ciclos antes da falha?
+    - **Objetivo**: Suporte direto a análises de degradação progressiva.
+
 
 ## 🚀 Tecnologias
 
