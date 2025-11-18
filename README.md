@@ -39,23 +39,24 @@ O projeto implementa uma solução de BI completa, que inclui modelagem operacio
 
 A arquitetura de BI proposta deverá permitir análises que respondam a perguntas críticas para a gestão de manutenção e operações:
 
-* **Pergunta (1)**: Quais sensores apresentam maior sensibilidade à degradação ao longo dos ciclos de operação?
-    - **Objetivo**: Ajuda a identificar quais variáveis são mais relevantes para diagnósticos de saúde do motor.
+* **Pergunta (1)**: Desvio Médio da Baseline por Configuração e Cenário: Em média, como o desvio do Sensor 4 em relação à sua leitura inicial (baseline) varia entre as diferentes configurações operacionais (setting1) dentro de cada cenário de teste (FD00x)?
+    - **Objetivo**: Medir o grau de desgaste cumulativo (media_desvio_baseline_s4) em diferentes condições de voo, fornecendo subtotais hierárquicos para contextualização gerencial (ROLLUP).
 
-* **Pergunta (2)**: Como a taxa média de degradação (queda de RUL) varia entre diferentes cenários de teste (FD001–FD004)?
-    - **Objetivo**: Permite comparar o impacto das condições operacionais sobre a confiabilidade.
+* **Pergunta (2)**: Priorização de Inspeção com Base no Risco de Falha Precoce: Qual é o ranking de risco de falha mais precoce para cada motor (motor_nr) dentro de seu respectivo cenário de teste (FD00x)?
+    - **Objetivo**: Priorizar a inspeção e manutenção (P3), identificando os motores mais críticos por meio de diferentes classificações de risco (RANK, DENSE_RANK, ROW_NUMBER).
 
-* **Pergunta (3)**: Quais motores demonstram comportamento anômalo em relação à média do grupo?
-    - **Objetivo**: Detecta possíveis desvios experimentais ou diferenças no padrão de desgaste.
+* **Pergunta (3)**: Análise da Tendência de Degradação (Próximo Ciclo): Qual é o desvio cumulativo do Sensor 13 em relação à baseline e qual a variação esperada no próximo ciclo (LEAD) para cada motor?
 
-* **Pergunta (4)**: Quais parâmetros operacionais (altitude, Mach, ângulo de manete) mais influenciam a redução da vida útil?
-    - **Objetivo**: Gera insights sobre o impacto das condições de voo na durabilidade.
+    - **Objetivo**: Suporte direto à análise de degradação progressiva, combinando o desgaste total (desvio_baseline_s13) com a projeção de tendência imediata (variacao_proximo_ciclo_s13).
 
-* **Pergunta (5)**: Em média, qual é o ciclo de falha esperado para cada tipo de cenário?
-    - **Objetivo**: Estabelece benchmarks internos de confiabilidade.
+* **Pergunta (4)**: Correlação da Taxa de Variação entre Sensores Críticos: Existe uma correlação entre a taxa de variação ciclo-a-ciclo do Sensor 6 (Pressão) e a do Sensor 11 (Temperatura) em cada motor?
+    - **Objetivo**: Mapear a interdependência entre subsistemas (P6) ao analisar se o aumento ou diminuição brusca em um sensor é acompanhado pelo outro (LAG).
+
+* **Pergunta (5)**: Ciclo de Falha Médio Esperado (KPI de Confiabilidade): Qual é o Ciclo de Falha Médio Esperado para cada cenário de teste (FD00x), e como isso se compara à média geral da frota?
+    - **Objetivo**: Estabelecer um KPI de benchmark de confiabilidade (P5) para que os gestores possam comparar a longevidade esperada em diferentes condições de operação (ROLLUP).
 
 * **Pergunta (6)**: É possível identificar correlação entre sensores específicos antes da falha?
-    - **Objetivo**: Permite mapear interdependência entre subsistemas (compressor, turbina, etc.).
+    - **Objetivo**: Objetivo: Permite mapear interdependência entre subsistemas (compressor, turbina, etc.).
 
 * **Pergunta (7)**: Como o comportamento temporal dos sensores evolui nos últimos ciclos antes da falha?
     - **Objetivo**: Suporte direto a análises de degradação progressiva.
