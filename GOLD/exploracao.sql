@@ -1,129 +1,139 @@
---Consulta 1: Baseline e Desvio Médio
-WITH Ranked_Data AS (
-    SELECT
-        T2.fd_id,
-        T3_config.setting1,
-        T1.sensor4,
-        T2.motor_nr,
-        T3_ciclo.cycle_nr,
-        FIRST_VALUE(T1.sensor4) OVER (
-            PARTITION BY T2.motor_nr
-            ORDER BY T3_ciclo.cycle_nr ASC
-        ) AS sensor4_baseline
-    FROM
-        fact_leitura_ciclo T1
-    JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
-    JOIN dim_configuracao T3_config ON T1.setting_id_fk = T3_config.setting_id
-    JOIN dim_ciclo T3_ciclo ON T1.cycle_id_fk = T3_ciclo.cycle_id
-)
-SELECT
-    COALESCE(T1.fd_id, 0) AS fd_id,
-    COALESCE(CAST(T1.setting1 AS CHAR), 'Total Cenário') AS setting1,
-    COUNT(*) AS contagem_leituras,
-    AVG(T1.sensor4 - T1.sensor4_baseline) AS media_desvio_baseline_s4,
-    AVG(T1.sensor4) AS media_total_s4
-FROM Ranked_Data T1
-GROUP BY T1.fd_id, T1.setting1
+-- +----+-----------------------------------------------------------------------+------------------------------+
+-- | ID | Pergunta de Negócio Respondida                                        | Dimensões Analisadas         | 
+-- +----+-----------------------------------------------------------------------+------------------------------+
+-- | 1  | ROLLUP - Qual a temperatura média global e por subnível de altitude?  | "Cenário, Altitude"          |
+-- | 2  | RANK - Quem são os motores mais duráveis de cada cenário?             | "Cenário, Motor"             |
+-- | 3  | LAG - Qual o impacto térmico incremental ao subir a potência?         | "Cenário, Potência (TRA)"    |
+-- | 4  | FIRST_VALUE - Qual o desvio de performance em relação ao motor ideal? | "Cenário, Motor"             |
+-- | 5  | DENSE_RANK- Quais zonas de altitude causam maior estresse de rotação? | "Cenário, Faixa de Altitude" |
+-- +----+-----------------------------------------------------------------------+------------------------------+
+
+-- ============================================================================================================
+-- CONSULTA 1: Média de Ciclos por Cenário e Configuração de Altitude
+-- Função Analítica: ROLLUP
+-- Pergunta: Qual a temperatura média global e por subnível de altitude?
+-- Dimensões do GROUP BY: fd_id (Cenário), setting1 (Altitude arredondada)
+-- ============================================================================================================
+
+SELECT 
+    COALESCE(CAST(T2.fd_id AS CHAR), 'Total Geral') AS cenario_teste,
+    COALESCE(CAST(ROUND(T3.setting1, 0) AS CHAR), 'Todas Altitudes') AS altitude_ft,
+    COUNT(DISTINCT T2.motor_nr) AS qtd_motores,
+    ROUND(AVG(T1.sensor4), 2) AS temp_media_lpt
+FROM fact_leitura_ciclo T1
+JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
+JOIN dim_configuracao T3 ON T1.setting_id_fk = T3.setting_id
+GROUP BY 
+    T2.fd_id, 
+    ROUND(T3.setting1, 0) 
 WITH ROLLUP;
 
---Consulta 2: Ranking de Risco
+-- ============================================================================================================
+-- CONSULTA 2: Ranking de Confiabilidade
+-- Função Analítica: RANK 
+-- Pergunta: Quem são os motores mais duráveis de cada cenário?
+-- Dimensões do GROUP BY: fd_id (Cenário), motor_nr (Identificador do motor)
+-- ============================================================================================================
 
-WITH Max_Cycle_Per_Unit AS (
-    SELECT
-        T2.fd_id,
-        T2.motor_nr,
-        MAX(T3.cycle_nr) AS max_cycle
-    FROM
-        fact_leitura_ciclo T1
-    JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
-    JOIN dim_ciclo T3 ON T1.cycle_id_fk = T3.cycle_id
-    GROUP BY 1, 2
-)
-SELECT
-    T1.fd_id,
-    T1.motor_nr,
-    T1.max_cycle,
+SELECT 
+    T2.fd_id,
+    T2.motor_nr,
+    MAX(T4.cycle_nr) AS vida_util_total,
+    -- Rankeia os motores: 1 = O que durou mais (Melhor), 100 = O que quebrou primeiro (Pior)
     RANK() OVER (
-        PARTITION BY T1.fd_id
-        ORDER BY T1.max_cycle ASC
-    ) AS rank_risco,
-    DENSE_RANK() OVER (
-        PARTITION BY T1.fd_id
-        ORDER BY T1.max_cycle ASC
-    ) AS dense_rank_risco,
-    ROW_NUMBER() OVER (
-        PARTITION BY T1.fd_id
-        ORDER BY T1.max_cycle ASC, T1.motor_nr ASC
-    ) AS row_num_prioridade
-FROM
-    Max_Cycle_Per_Unit T1
-ORDER BY fd_id, rank_risco;
+        PARTITION BY T2.fd_id 
+        ORDER BY MAX(T4.cycle_nr) DESC
+    ) AS ranking_confiabilidade
+FROM fact_leitura_ciclo T1
+JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
+JOIN dim_ciclo T4 ON T1.cycle_id_fk = T4.cycle_id
+GROUP BY 
+    T2.fd_id, 
+    T2.motor_nr;
 
---Consulta 3: Desvio e Projeção Temporal
+-- ============================================================================================================
+-- CONSULTA 3: Correlação Manete e Temperatura
+-- Função Analítica: LAG 
+-- Pergunta: Qual o impacto térmico incremental ao subir a potência? 
+-- Dimensões do GROUP BY: fd_id (Cenário), setting3 (Manete de Potência)
+-- ============================================================================================================
 
-SELECT
-    T2.fd_id,
-    T2.motor_nr,
-    T3.cycle_nr,
-    T1.sensor13 AS sensor13_atual,
-    FIRST_VALUE(T1.sensor13) OVER (
-        PARTITION BY T2.fd_id, T2.motor_nr
-        ORDER BY T3.cycle_nr ASC
-    ) AS sensor13_baseline,
-    T1.sensor13 - FIRST_VALUE(T1.sensor13) OVER (
-        PARTITION BY T2.fd_id, T2.motor_nr
-        ORDER BY T3.cycle_nr ASC
-    ) AS desvio_baseline_s13,
-    LEAD(T1.sensor13, 1) OVER (
-        PARTITION BY T2.fd_id, T2.motor_nr
-        ORDER BY T3.cycle_nr
-    ) - T1.sensor13 AS variacao_proximo_ciclo_s13
-FROM
-    fact_leitura_ciclo T1
-JOIN
-    dim_motor T2 ON T1.unit_id_fk = T2.unit_id
-JOIN
-    dim_ciclo T3 ON T1.cycle_id_fk = T3.cycle_id
-ORDER BY 1, 2, 3;
-
---Consulta 4: Correlação de Taxas de Degradação
-
-SELECT
-    T2.fd_id,
-    T2.motor_nr,
-    T3.cycle_nr,
-    T1.sensor6 - LAG(T1.sensor6, 1, T1.sensor6) OVER (
-        PARTITION BY T2.fd_id, T2.motor_nr
-        ORDER BY T3.cycle_nr
-    ) AS variacao_s6,
-    T1.sensor11 - LAG(T1.sensor11, 1, T1.sensor11) OVER (
-        PARTITION BY T2.fd_id, T2.motor_nr
-        ORDER BY T3.cycle_nr
-    ) AS variacao_s11
-FROM
-    fact_leitura_ciclo T1
-JOIN
-    dim_motor T2 ON T1.unit_id_fk = T2.unit_id
-JOIN
-    dim_ciclo T3 ON T1.cycle_id_fk = T3.cycle_id
-ORDER BY 1, 2, 3;
-
---Consulta 5: Ciclo de Falha Médio Esperado (KPI)
-SELECT
-    COALESCE(T2.fd_id, 0) AS fd_id,
-    COUNT(T2.motor_nr) AS total_motores_no_cenario,
-    AVG(T2.max_cycle) AS ciclo_falha_medio_esperado
+SELECT 
+    T_FINAL.fd_id,
+    T_FINAL.potencia_manete,
+    AVG(T_FINAL.media_temp) AS media_temp_lpt,
+    -- Calcula a diferença de temperatura em relação ao degrau anterior de potência
+    AVG(T_FINAL.media_temp) - LAG(AVG(T_FINAL.media_temp), 1) OVER (
+        PARTITION BY T_FINAL.fd_id 
+        ORDER BY T_FINAL.potencia_manete
+    ) AS diferenca_para_potencia_anterior
 FROM (
-    SELECT
-        T_DIM.fd_id,
-        T_DIM.motor_nr,
-        MAX(T_CICLO.cycle_nr) AS max_cycle
-    FROM
-        fact_leitura_ciclo T_FATO
-    JOIN dim_motor T_DIM ON T_FATO.unit_id_fk = T_DIM.unit_id
-    JOIN dim_ciclo T_CICLO ON T_FATO.cycle_id_fk = T_CICLO.cycle_id
-    GROUP BY 1, 2
-) AS T2
-GROUP BY
-    T2.fd_id
-WITH ROLLUP;
+    -- Subquery para arredondar a potência antes de agrupar
+    SELECT 
+        T2.fd_id,
+        ROUND(T3.setting3, 1) AS potencia_manete,
+        T1.sensor4 AS media_temp
+    FROM fact_leitura_ciclo T1
+    JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
+    JOIN dim_configuracao T3 ON T1.setting_id_fk = T3.setting_id
+) AS T_FINAL
+GROUP BY 
+    T_FINAL.fd_id, 
+    T_FINAL.potencia_manete;
+
+-- ============================================================================================================
+-- CONSULTA 4: Desvio do Motor Ideal
+-- Função Analítica: FIRST_VALUE 
+-- Pergunta: Qual o desvio de performance em relação ao motor ideal?
+-- Dimensões do GROUP BY: fd_id (Cenário), motor_nr (Identificador do motor)
+-- ============================================================================================================
+
+SELECT 
+    T2.fd_id,
+    T2.motor_nr,
+    ROUND(AVG(T1.sensor4), 2) AS temp_media_motor,
+    -- Pega a temperatura do motor mais "frio" (saudável) do mesmo cenário
+    ROUND(FIRST_VALUE(AVG(T1.sensor4)) OVER (
+        PARTITION BY T2.fd_id 
+        ORDER BY AVG(T1.sensor4) ASC
+    ), 2) AS temp_benchmark_lider,
+    -- Calcula o desvio: Quanto meu motor está mais quente que o líder?
+    ROUND(AVG(T1.sensor4) - FIRST_VALUE(AVG(T1.sensor4)) OVER (
+        PARTITION BY T2.fd_id 
+        ORDER BY AVG(T1.sensor4) ASC
+    ), 2) AS desvio_do_lider
+FROM fact_leitura_ciclo T1
+JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
+GROUP BY 
+    T2.fd_id, 
+    T2.motor_nr;
+
+-- ============================================================================================================
+-- CONSULTA 5: Altitude vs. Rotação
+-- Função Analítica: DENSE_RANK 
+-- Pergunta: Quais zonas de altitude causam maior estresse de rotação?
+-- Dimensões do GROUP BY: fd_id (Cenário), setting1 (Altitude)
+-- ============================================================================================================
+
+SELECT 
+    T_FINAL.fd_id,
+    ROUND(T_FINAL.altitude_raw, -1) AS faixa_altitude, 
+    ROUND(AVG(T_FINAL.sensor9), 2) AS rotacao_media_core,
+    DENSE_RANK() OVER (
+        PARTITION BY T_FINAL.fd_id 
+        ORDER BY AVG(T_FINAL.sensor9) DESC
+    ) AS rank_severidade_altitude
+FROM (
+    SELECT 
+        T2.fd_id,
+        T3.setting1 AS altitude_raw,
+        T1.sensor9
+    FROM fact_leitura_ciclo T1
+    JOIN dim_motor T2 ON T1.unit_id_fk = T2.unit_id
+    JOIN dim_configuracao T3 ON T1.setting_id_fk = T3.setting_id
+) AS T_FINAL
+GROUP BY 
+    T_FINAL.fd_id, 
+    ROUND(T_FINAL.altitude_raw, -1);
+
+-- ============================================================================================================
