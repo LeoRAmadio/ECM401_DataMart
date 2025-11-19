@@ -62,6 +62,8 @@ try:
         .appName("PandasToMySQL") \
         .config("spark.jars.packages", "mysql:mysql-connector-java:8.0.33") \
         .getOrCreate()
+    
+    spark.sparkContext.setLogLevel("ERROR")
 
     spark_df = spark.createDataFrame(df_final_pandas)
 

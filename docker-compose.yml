@@ -1,6 +1,7 @@
 services:
   mysql-db:
     image: mysql:8.0
+    command: --log-error-verbosity=1
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

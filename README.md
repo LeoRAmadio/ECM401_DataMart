@@ -10,16 +10,17 @@ Este repositório contém o desenvolvimento de um protótipo de **Business Intel
 
 | Nome | R.A. |
 | ---- | ---- |
-| André Solano F. R. Maiolini | 19.02012-0 |
+| André Solano Ferreira Rodrigues Maiolini | 19.02012-0 |
 | Durval Consorti Soranz de Barros Santos | 22.01097-0 |
 | Leonardo Roberto Amadio | 22.01300-8 |
+| Lucas Castanho Paganotto Carvalho | 22.00921-3 |
 
 ## 💡 Problema de Negócio e Proposta
 
 O problema de negócio a ser resolvido é o alto custo e a ineficiência associados à manutenção não programada e à manutenção preventiva baseada em cronogramas fixos. A abordagem tradicional, a Manutenção Baseada no Tempo (TBM), é segura, mas inerentemente ineficiente e cara.
 
 Nossa proposta é desenvolver um **Cockpit de Saúde da Frota**:
-* ✅ **Sistema de BI** que serve como prova de conceito (proof of concept) de um DataMart e um dashboard gerencial.
+* ✅ **Sistema de BI** que serve como prova de conceito (proof of concept) de um DataMart para um dashboard.
 * ✈️ **Objetivo de Negócio:** Transformar dados brutos de sensores em indicadores acionáveis, permitindo decisões proativas para aumentar a segurança, reduzir custos com manutenção não programada e otimizar a disponibilidade da frota.
 * 📉 **Relatórios da indústria sugerem que a manutenção preditiva pode reduzir custos gerais de manutenção em 15-20% e diminuir paradas não planejadas em até 50%**.
 
