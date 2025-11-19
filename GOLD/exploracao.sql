@@ -6,6 +6,7 @@
 -- | 3  | LAG - Qual o impacto térmico incremental ao subir a potência?         | "Cenário, Potência (TRA)"    |
 -- | 4  | FIRST_VALUE - Qual o desvio de performance em relação ao motor ideal? | "Cenário, Motor"             |
 -- | 5  | DENSE_RANK- Quais zonas de altitude causam maior estresse de rotação? | "Cenário, Faixa de Altitude" |
+-- | 6  | ROLLUP - Qual o ciclo de falha médio para cada configuração?          | "Cenário, Número de Ciclo"   |
 -- +----+-----------------------------------------------------------------------+------------------------------+
 
 -- ============================================================================================================
@@ -135,5 +136,31 @@ FROM (
 GROUP BY 
     T_FINAL.fd_id, 
     ROUND(T_FINAL.altitude_raw, -1);
+
+-- ============================================================================================================
+-- CONSULTA 6: Altitude vs. Rotação
+-- Função Analítica: ROLLUP
+-- Pergunta: Qual o ciclo de falha médio para cada configuração? 
+-- Dimensões do GROUP BY: fd_id (Cenário), cycle_nr (Número de Ciclo)
+-- ============================================================================================================
+
+SELECT
+    COALESCE(T2.fd_id, 0) AS fd_id,
+    COUNT(T2.motor_nr) AS total_motores_no_cenario,
+    AVG(T2.max_cycle) AS ciclo_falha_medio_esperado
+FROM (
+    SELECT
+        T_DIM.fd_id,
+        T_DIM.motor_nr,
+        MAX(T_CICLO.cycle_nr) AS max_cycle
+    FROM
+        fact_leitura_ciclo T_FATO
+    JOIN dim_motor T_DIM ON T_FATO.unit_id_fk = T_DIM.unit_id
+    JOIN dim_ciclo T_CICLO ON T_FATO.cycle_id_fk = T_CICLO.cycle_id
+    GROUP BY 1, 2
+) AS T2
+GROUP BY
+    T2.fd_id
+WITH ROLLUP;
 
 -- ============================================================================================================
