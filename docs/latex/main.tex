@@ -371,12 +371,9 @@ Além disso, nessa mesma fase, a tabela \texttt{fact\_leitura\_ciclo} foi transf
 \newpage
 
 \section{Processo de Extração, Transformação e Carga (ETL)}
-O processo de ETL é o núcleo da engenharia de dados deste projeto, responsável por mover e tratar os dados desde a fonte bruta até o DataMart analítico.
+O processo de ETL é o núcleo da engenharia de dados deste projeto, responsável por mover e tratar os dados desde a fonte bruta até o DataMart analítico. A extração e a transformação inicial dos dados, fundamentais para a criação do DataMart, é realizada nessas camadas: \textbf{Bronze} e \textbf{Silver}.
 
-\subsection{Camadas Bronze e Silver}
-A extração e a transformação inicial dos dados, fundamentais para a criação do DataMart, é realizada nessas camadas: \textbf{Bronze} e \textbf{Silver}.
-
-\subsubsection{Camada Bronze: Ingestão de Dados Brutos}
+\subsection{Camada Bronze: Ingestão de Dados Brutos}
 A primeira etapa, correspondente à \textbf{Camada Bronze}, consistiu na extração dos dados brutos dos quatro arquivos \texttt{train\_FD00X.txt} do dataset C-MAPSS. 
 Um script em Python (\texttt{extracao.py}) foi desenvolvido para:
 \begin{itemize}
@@ -386,7 +383,7 @@ Um script em Python (\texttt{extracao.py}) foi desenvolvido para:
     \item Carregar esses dados brutos, sem nenhuma outra transformação, em uma tabela de \textit{staging} no MySQL, cujo schema foi definido no script \texttt{cria\_schema.sql}.
 \end{itemize}
 
-\subsubsection{Camada Silver: Limpeza e Enriquecimento}
+\subsection{Camada Silver: Limpeza e Enriquecimento}
 A \textbf{Camada Silver} representa a fonte de verdade limpa, validada e integrada. Nela, os dados da camada Bronze são transformados, enriquecidos e preparados para a modelagem analítica. O trabalho realizado nesta etapa (implementado em \texttt{silver\_tratamento.py} e \texttt{silver\_script.sql}) incluiu:
 \begin{itemize}
     \item \textbf{Cálculo do RUL:} Conforme a hipótese do projeto, o KPI central (RUL) foi calculado para os dados de treino. Isso envolveu agrupar os dados por motor para encontrar o ciclo máximo (ciclo de falha) e, em seguida, calcular o RUL para cada linha como \texttt{(Ciclo\_Maximo - Ciclo\_Atual)}.

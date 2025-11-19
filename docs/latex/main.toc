@@ -20,11 +20,10 @@
 \contentsline {subsection}{\numberline {2.2.1}Stack de Tecnologias Utilizada}{14}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Modelo Lógico e Dimensional (DataMart)}{14}{subsection.2.2.2}%
 \contentsline {section}{\numberline {2.3}Processo de Extração, Transformação e Carga (ETL)}{17}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Camadas Bronze e Silver}{17}{subsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.1.1}Camada Bronze: Ingestão de Dados Brutos}{17}{subsubsection.2.3.1.1}%
-\contentsline {subsubsection}{\numberline {2.3.1.2}Camada Silver: Limpeza e Enriquecimento}{17}{subsubsection.2.3.1.2}%
-\contentsline {subsection}{\numberline {2.3.2}Definição e Hipótese do KPI}{18}{subsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.2.1}BI como Consumidor}{18}{subsubsection.2.3.2.1}%
+\contentsline {subsection}{\numberline {2.3.1}Camada Bronze: Ingestão de Dados Brutos}{17}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Camada Silver: Limpeza e Enriquecimento}{17}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Definição e Hipótese do KPI}{18}{subsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.3.1}BI como Consumidor}{18}{subsubsection.2.3.3.1}%
 \contentsline {section}{\numberline {2.4}Infraestrutura e Containerização}{19}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Orquestração da Execução}{19}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Consultas Analíticas}{20}{section.2.5}%
