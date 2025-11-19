@@ -1,0 +1,26 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem{adamopoulou2023applications}
+\abntrefinfo{Adamopoulou e Daskalakis}{ADAMOPOULOU; DASKALAKIS}{2023}
+{ADAMOPOULOU, E.; DASKALAKIS, E. Applications and technologies of big data in
+  the aerospace domain.
+\emph{Electronics}, MDPI, v.~12, n.~10, p.~2225, 2023.}
+
+\bibitem{badea2018big}
+\abntrefinfo{Badea, Zamfiroiu e Boncea}{BADEA; ZAMFIROIU; BONCEA}{2018}
+{BADEA, V.~E.; ZAMFIROIU, A.; BONCEA, R. Big data in the aerospace industry.
+\emph{Informatica Economica}, INFOREC Association, v.~22, n.~1, p. 17--24,
+  2018.}
+
+\bibitem{saxena2008damage}
+\abntrefinfo{Saxena et al.}{SAXENA et al.}{2008}
+{SAXENA, A. et al. Damage propagation modeling for aircraft engine
+  run-to-failure simulation. In:  IEEE. \emph{2008 international conference on
+  prognostics and health management}. [S.l.], 2008. p.~1--9.}
+
+\end{thebibliography}

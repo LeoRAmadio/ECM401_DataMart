@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.16)  19 NOV 2025 16:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.16)  19 NOV 2025 19:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -758,28 +758,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--88
 
 [2
 
-] (main.toc)
+] (main.toc
 
 [3
 
-]
+])
 
-LaTeX Warning: Citation `adamopoulou2023applications' on page 4 undefined on input line 104.
-
-
-LaTeX Warning: Citation `badea2018big' on page 4 undefined on input line 104.
-
-
-LaTeX Warning: Citation `badea2018big' on page 4 undefined on input line 106.
-
-<images/terabytes_iot_aircraft.png, id=84, 6134.92pt x 2698.08pt>
+[4]
+<images/terabytes_iot_aircraft.png, id=99, 6134.92pt x 2698.08pt>
 File: images/terabytes_iot_aircraft.png Graphic file (type png)
 <use images/terabytes_iot_aircraft.png>
 Package pdftex.def Info: images/terabytes_iot_aircraft.png  used on input line 112.
 (pdftex.def)             Requested size: 455.24411pt x 200.20647pt.
 
 
-[4
+[5
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 130.
@@ -789,32 +782,27 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 Package babel Info: 'brazil' activates 'portuges' shorthands.
 (babel)             Reported on input line 132.
-[5 <./images/terabytes_iot_aircraft.png (PNG copy)>]
-
-[6]
+[6 <./images/terabytes_iot_aircraft.png (PNG copy)>]
 
 [7]
-
-LaTeX Warning: Citation `saxena2008damage' on page 8 undefined on input line 158.
-
-<images/turbofan_model.png, id=103, 4215.75pt x 2617.78pt>
+<images/turbofan_model.png, id=117, 4215.75pt x 2617.78pt>
 File: images/turbofan_model.png Graphic file (type png)
 <use images/turbofan_model.png>
-Package pdftex.def Info: images/turbofan_model.png  used on input line 168.
+Package pdftex.def Info: images/turbofan_model.png  used on input line 165.
 (pdftex.def)             Requested size: 284.52756pt x 176.67255pt.
 
 
 [8
 
 ]
-Overfull \hbox (0.846pt too wide) in paragraph at lines 184--185
+Overfull \hbox (0.846pt too wide) in paragraph at lines 181--182
 []\T1/ptm/b/n/12 Expansão (adi-a-bá-tico): \T1/ptm/m/n/12 Os ga-ses quen-tes re-sul-tan-tes pas-sam pe-las tur-bi-nas de alta (HPT)
  []
 
-<images/brayton.png, id=110, 560.8453pt x 220.57407pt>
+<images/brayton.png, id=125, 560.8453pt x 220.57407pt>
 File: images/brayton.png Graphic file (type png)
 <use images/brayton.png>
-Package pdftex.def Info: images/brayton.png  used on input line 192.
+Package pdftex.def Info: images/brayton.png  used on input line 189.
 (pdftex.def)             Requested size: 455.24411pt x 179.04095pt.
 
 
@@ -827,28 +815,34 @@ Package pdftex.def Info: images/brayton.png  used on input line 192.
 [12]
 
 [13]
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 288.
+<images/medallion_architecture.png, id=164, 1464.2203pt x 455.45157pt>
+File: images/medallion_architecture.png Graphic file (type png)
+<use images/medallion_architecture.png>
+Package pdftex.def Info: images/medallion_architecture.png  used on input line 292.
+(pdftex.def)             Requested size: 455.24411pt x 141.6055pt.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 302.
  (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 288.
-
-
-[14]
-<images/medallion_architecture.png, id=155, 1464.2203pt x 455.45157pt>
-File: images/medallion_architecture.png Graphic file (type png)
-<use images/medallion_architecture.png>
-Package pdftex.def Info: images/medallion_architecture.png  used on input line 300.
-(pdftex.def)             Requested size: 455.24411pt x 141.6055pt.
-
-
-[15 <./images/medallion_architecture.png>]
-Overfull \hbox (0.94356pt too wide) in paragraph at lines 319--320
-[]\T1/ptm/b/n/12 Tabelas de Di-men-são: \T1/ptm/m/n/12 Ta-be-las que for-ne-cem o con-texto para a aná-lise (ex: \T1/pcr/m/n/12 Dim_Motor\T1/ptm/m/n/12 ,
+Overfull \hbox (14.66025pt too wide) in paragraph at lines 302--303
+[]\T1/ptm/b/n/12 Linguagem de Pro-gra-ma-ção (ETL): \T1/ptm/m/n/12 Python 3, com uso da bi-bli-o-teca \T1/pcr/m/n/12 pandas \T1/ptm/m/n/12 e \T1/pcr/m/n/12 PySpark
  []
 
 
+
+[14 <./images/medallion_architecture.png>]
+Overfull \hbox (0.94356pt too wide) in paragraph at lines 314--315
+[]\T1/ptm/b/n/12 Tabelas de Di-men-são: \T1/ptm/m/n/12 Ta-be-las que for-ne-cem o con-texto para a aná-lise (ex: \T1/pcr/m/n/12 Dim_Motor\T1/ptm/m/n/12 ,
+ []
+
+<images/arquitetura.png, id=172, 445.665pt x 636.87938pt>
+File: images/arquitetura.png Graphic file (type png)
+<use images/arquitetura.png>
+Package pdftex.def Info: images/arquitetura.png  used on input line 323.
+(pdftex.def)             Requested size: 341.43307pt x 487.93027pt.
+
+
+[15 <./images/arquitetura.png>]
 
 [16]
 
@@ -857,16 +851,57 @@ Overfull \hbox (0.94356pt too wide) in paragraph at lines 319--320
 [18]
 
 [19]
+Underfull \hbox (badness 10000) in paragraph at lines 458--459
+[]|\T1/ptm/m/n/12 Cenário, Po-tên-cia
+ []
+
+
+Underfull \hbox (badness 6348) in paragraph at lines 461--462
+[]|\T1/ptm/m/n/12 Cenário, Nú-mero de
+ []
+
+
+Overfull \hbox (11.95401pt too wide) in paragraph at lines 452--464
+ [][] 
+ []
+
+
 
 [20]
+<images/dashboard1.png, id=206, 1055.44313pt x 593.21625pt>
+File: images/dashboard1.png Graphic file (type png)
+<use images/dashboard1.png>
+Package pdftex.def Info: images/dashboard1.png  used on input line 485.
+(pdftex.def)             Requested size: 455.24411pt x 255.86551pt.
+
 
 [21
 
+ <./images/dashboard1.png>]
+<images/dashboard2.png, id=214, 1052.93375pt x 587.69562pt>
+File: images/dashboard2.png Graphic file (type png)
+<use images/dashboard2.png>
+Package pdftex.def Info: images/dashboard2.png  used on input line 503.
+(pdftex.def)             Requested size: 455.24411pt x 254.09415pt.
+
+
+[22 <./images/dashboard2.png>]
+<images/dashboard3.png, id=222, 1053.9375pt x 591.71063pt>
+File: images/dashboard3.png Graphic file (type png)
+<use images/dashboard3.png>
+Package pdftex.def Info: images/dashboard3.png  used on input line 516.
+(pdftex.def)             Requested size: 455.24411pt x 255.58629pt.
+
+
+[23 <./images/dashboard3.png>] (main.bbl
+
+[24
+
 ]
-No file main.bbl.
+bibitemlist
+)
 
-
-[22
+[25
 
 ]
 \tf@toc=\write4
@@ -877,23 +912,19 @@ No file main.bbl.
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 17246 strings out of 468132
- 271566 string characters out of 5430690
- 722582 words of memory out of 5000000
- 45575 multiletter control sequences out of 15000+600000
- 676003 words of font info for 87 fonts, out of 8000000 for 9000
+ 17333 strings out of 468132
+ 273434 string characters out of 5430690
+ 723600 words of memory out of 5000000
+ 45640 multiletter control sequences out of 15000+600000
+ 675887 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,107p,977b,754s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (23 pages, 6450355 bytes).
+ 99i,12n,107p,968b,741s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (26 pages, 7469627 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 415 PDF objects out of 1000 (max. 8388607)
+ 88 named destinations out of 1000 (max. 500000)
+ 305 words of extra memory for PDF output out of 10000 (max. 10000000)
 

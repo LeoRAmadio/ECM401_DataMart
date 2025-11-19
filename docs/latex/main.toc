@@ -2,12 +2,12 @@
 \babel@toc {brazil}{}\relax 
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase []{Introdução}}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}IoT, Big Data e a Evolução da Manutenção}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Objetivos}{5}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Objetivo Geral}{5}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Objetivos Específicos}{5}{subsection.1.2.2}%
-\contentsline {section}{\numberline {1.3}Perguntas-Chave para o BI}{6}{section.1.3}%
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase []{Introdução}}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}IoT, Big Data e a Evolução da Manutenção}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objetivos}{6}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Objetivo Geral}{6}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Objetivos Específicos}{6}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Perguntas-Chave para o BI}{7}{section.1.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase []{Metodologia e Desenvolvimento}}{8}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Dataset NASA C-MAPSS}{8}{section.2.1}%
@@ -16,20 +16,25 @@
 \contentsline {subsection}{\numberline {2.1.3}Estrutura e Cenários de Teste}{11}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}Estrutura dos Dados}{12}{subsection.2.1.4}%
 \contentsline {subsection}{\numberline {2.1.5}Pré-processamento e Modelagem Dimensional}{13}{subsection.2.1.5}%
-\contentsline {section}{\numberline {2.2}Base de Dados Operacional (OLTP)}{14}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Arquitetura de Dados e Stack de Tecnologias}{15}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Stack de Tecnologias Utilizada}{15}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Modelo Lógico e Dimensional (DataMart)}{15}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Processo de Extração, Transformação e Carga (ETL)}{17}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Trabalho Realizado (Camadas Bronze e Silver)}{17}{subsection.2.4.1}%
-\contentsline {subsubsection}{\numberline {2.4.1.1}Camada Bronze: Ingestão de Dados Brutos}{17}{subsubsection.2.4.1.1}%
-\contentsline {subsubsection}{\numberline {2.4.1.2}Camada Silver: Limpeza e Enriquecimento}{17}{subsubsection.2.4.1.2}%
-\contentsline {subsection}{\numberline {2.4.2}Definição e Hipótese do KPI Central: o RUL}{18}{subsection.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.4.2.1}O que é o RUL?}{18}{subsubsection.2.4.2.1}%
-\contentsline {subsubsection}{\numberline {2.4.2.2}A Hipótese do Projeto: BI como Consumidor de ML}{18}{subsubsection.2.4.2.2}%
+\contentsline {section}{\numberline {2.2}Arquitetura de Dados e Stack de Tecnologias}{14}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Stack de Tecnologias Utilizada}{14}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Modelo Lógico e Dimensional (DataMart)}{14}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Processo de Extração, Transformação e Carga (ETL)}{17}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Camadas Bronze e Silver}{17}{subsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.1.1}Camada Bronze: Ingestão de Dados Brutos}{17}{subsubsection.2.3.1.1}%
+\contentsline {subsubsection}{\numberline {2.3.1.2}Camada Silver: Limpeza e Enriquecimento}{17}{subsubsection.2.3.1.2}%
+\contentsline {subsection}{\numberline {2.3.2}Definição e Hipótese do KPI}{18}{subsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.2.1}BI como Consumidor}{18}{subsubsection.2.3.2.1}%
+\contentsline {section}{\numberline {2.4}Infraestrutura e Containerização}{19}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Orquestração da Execução}{19}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Consultas Analíticas}{20}{section.2.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{Resultados e Análise}}{21}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Escala Microscópica (Diagnóstico do Motor)}{21}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Escala Mesoscópica (Análise Comparativa)}{22}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Escala Macroscópica (Visão Global)}{23}{section.3.3}%
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{Conclusão}{22}{section*.5}%
+\contentsline {chapter}{Conclusão}{24}{section*.5}%
 \vspace {\cftbeforechapterskip }
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{25}{section*.8}%

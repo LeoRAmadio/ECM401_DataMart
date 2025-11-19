@@ -45,7 +45,7 @@
 \usepackage[num]{abntex2cite}   
 
 % --- INFORMAÇÕES DO TRABALHO E AUTORES ---
-\titulo{Plataforma de BI para Engenharia de Confiabilidade - Análise de Degradação de Motores Turbofan (C-MAPSS)} % Título atualizado
+\titulo{Plataforma de BI para Engenharia - Análise de Motores Turbofan (C-MAPSS)} % Título atualizado
 \autor{%
     André Solano Ferreira Rodrigues Maiolini (19.02012-0) \\
     Durval Consorti Soranz de Barros Santos (22.01097-0) \\
@@ -63,7 +63,7 @@
 \preambulo{%
     Trabalho apresentado para aprovação na disciplina ECM401 - Banco de Dados, do Instituto Mauá de Tecnologia.
     \par \vspace{0.5cm}
-    Professor: Dr. Antônio Fernando Nunes Guardado
+    Professor: Me. Antônio Fernando Nunes Guardado
 }
 
 \local{São Caetano Sul -- SP}
@@ -128,30 +128,27 @@ Construir um DataMart e um conjunto de dashboards de BI que consolidem dados de 
 \subsection{Objetivos Específicos}
 \begin{itemize}
     \item Integrar os quatro subconjuntos do C-MAPSS (FD001–FD004) em uma única base analítica, identificando o cenário de teste como uma dimensão de análise.
-    \item Calcular métricas de confiabilidade e desempenho, incluindo Vida Útil Remanescente (RUL) e taxas médias de degradação.
     \item Modelar um DataMart com foco em engenharia, contendo dimensões como Motor, Cenário de Teste, Sensor, Tempo e Condição Operacional.
     \item Implementar consultas analíticas e dashboards para apoiar decisões de engenharia, tais como identificação de sensores críticos, comparação entre regimes operacionais e análise de tendências de falha.
-    \item Demonstrar como o BI pode ser integrado a fluxos de PHM (\textit{Prognostics and Health Management}) para aumentar a visibilidade sobre o comportamento dos motores.
 \end{itemize}
 
 \section{Perguntas-Chave para o BI}
 
 % --- PERGUNTAS (FOCO ENGENHARIA DE CONFIABILIDADE) ---
-O sucesso da plataforma de BI será medido pela sua capacidade de responder a perguntas críticas de engenharia:
+O sucesso da plataforma de BI será medido pela sua capacidade de responder às seguintes perguntas de engenharia:
 \begin{itemize}
-    \item Quais sensores apresentam maior sensibilidade à degradação ao longo dos ciclos de operação? (\textit{Ajuda a identificar quais variáveis são mais relevantes para diagnósticos de saúde do motor.})
-    \item Como a taxa média de degradação (queda de RUL) varia entre diferentes cenários de teste (FD001–FD004)? (\textit{Permite comparar o impacto das condições operacionais sobre a confiabilidade.})
-    \item Quais motores demonstram comportamento anômalo em relação à média do grupo? (\textit{Detecta possíveis desvios experimentais ou diferenças no padrão de desgaste.})
-    \item Quais parâmetros operacionais (altitude, Mach, ângulo de manete) mais influenciam a redução da vida útil? (\textit{Gera insights sobre o impacto das condições de voo na durabilidade.})
-    \item Em média, qual é o ciclo de falha esperado para cada tipo de cenário? (\textit{Estabelece benchmarks internos de confiabilidade.})
-    \item É possível identificar correlação entre sensores específicos antes da falha? (\textit{Permite mapear interdependência entre subsistemas (compressor, turbina, etc.).})
-    \item Como o comportamento temporal dos sensores evolui nos últimos ciclos antes da falha? (\textit{Suporte direto a análises de degradação progressiva.})
+    \item Qual a temperatura média global e por subnível de altitude? (\textit{Motores operam em altitudes variadas, e a temperatura de saída da turbina muda naturalmente com a altitude.})
+    \item Quais são os motores mais duráveis de cada cenário? (\textit{Identifica os motores excepcionais e aqueles problemáticos.})
+    \item Qual o impacto térmico incremental ao subir a potência? (\textit{Mede a sensibilidade térmica, um motor degradado pode ter um pico térmico desproporcional ao subir a potência.})
+    \item Qual o desvio de performance em relação ao motor ideal? (\textit{Realiza um Benchmarking. A query pega o motor mais "frio" (mais eficiente) do cenário e o define como o líder. Em seguida, calcula quantos graus acima desse líder cada outro motor está operando.})
+    \item Quais zonas de altitude causam maior estresse de rotação? (\textit{Descobre se voar em certas altitudes força o motor a girar muito mais rápido para manter o empuxo. Isso pode informar pilotos ou o planejamento de voo para evitar certas altitudes, estendendo a vida útil dos componentes rotativos.})
+    \item Qual o ciclo de falha médio para cada configuração? (\textit{Calcula o MTBF (Mean Time Between Failures) esperado. A query conta quantos ciclos os motores aguentaram em média para cada configuração.})
 \end{itemize}
 
 % CAPÍTULO 2: METODOLOGIA E DESENVOLVIMENTO
 \chapter{Metodologia e Desenvolvimento}
 
-A construção da plataforma de Business Intelligence (BI) proposta neste trabalho seguirá as etapas clássicas de um projeto de Data Warehouse, conforme as abordagens de Kimball e Inmon, adaptadas ao contexto de engenharia de confiabilidade e ao domínio do conjunto de dados C-MAPSS. A metodologia compreende desde a compreensão do domínio e estrutura dos dados até sua modelagem dimensional e integração em um ambiente analítico, possibilitando o monitoramento da saúde de frota de motores turbofan simulados.
+A construção da plataforma de Business Intelligence (BI) proposta neste trabalho seguirá as etapas clássicas de um projeto de Data Warehouse, conforme as abordagens de Kimball e Inmon, adaptadas ao contexto de engenharia de confiabilidade e ao domínio do conjunto de dados C-MAPSS. A metodologia engloba desde a compreensão do domínio e estrutura dos dados até sua modelagem dimensional e integração em um ambiente analítico, possibilitando o monitoramento da saúde de frota de motores turbofan simulados.
 
 \section{Dataset NASA C-MAPSS}
 
@@ -229,7 +226,7 @@ O conjunto de dados C-MAPSS é composto por quatro subconjuntos — \textbf{FD00
 
 Essa estrutura hierárquica torna o C-MAPSS um conjunto de dados ideal para estudos de confiabilidade e manutenção preditiva, pois permite analisar como o comportamento dos sensores e a degradação do motor variam conforme o tipo de falha e o ambiente de operação.
 
-A integração dos quatro subconjuntos em um único \textit{Data Mart} possibilitará análises comparativas de alto valor, permitindo observar o impacto combinado das condições de operação e dos modos de falha na vida útil dos motores. Essa consolidação é essencial para o desenvolvimento de painéis de Business Intelligence voltados à engenharia de confiabilidade, viabilizando a identificação de padrões de degradação e tendências de desempenho.
+A integração dos quatro subconjuntos em um único \textit{Data Mart} possibilitará análises comparativas de alto valor, permitindo observar o impacto combinado das condições de operação e dos modos de falha na vida útil dos motores. 
 
 \subsection{Estrutura dos Dados}
 
@@ -271,7 +268,7 @@ Cada linha do conjunto de dados representa um ciclo de operação de um motor e 
     \end{itemize}
 \end{itemize}
 
-A análise combinada dessas medições ao longo dos ciclos permite identificar padrões sutis de degradação associados ao desgaste progressivo dos componentes do compressor e da turbina. Em particular, o acompanhamento das variáveis relacionadas ao \textbf{HPC} e ao \textbf{fan} é fundamental, já que ambos os componentes estão associados aos principais modos de falha simulados no C-MAPSS.
+A análise combinada dessas medições ao longo dos ciclos permite identificar padrões sutis de degradação associados ao desgaste progressivo dos componentes do compressor e da turbina. Em particular, o acompanhamento das variáveis relacionadas ao \textbf{LPT}, \textbf{HPC} e ao \textbf{fan} é fundamental, já que ambos os componentes estão associados aos principais modos de falha simulados no C-MAPSS.
 
 \subsection{Pré-processamento e Modelagem Dimensional}
 % Texto original mantido, pois a seção 2.4 detalha o que foi feito.
@@ -279,14 +276,9 @@ Para viabilizar o uso dos dados na plataforma de BI, serão aplicadas etapas de 
 
 \begin{enumerate}
 \item \textbf{Limpeza e Padronização:} Verificação de consistência e formatação das variáveis conforme seus tipos físicos e unidades de medida.
-\item \textbf{Engenharia de Atributos:} Cálculo de métricas derivadas, como gradientes de temperatura e variações de pressão entre estágios.
-\item \textbf{Modelagem Dimensional:} Construção de um \textit{Data Mart} temático voltado à análise de saúde de frota, com tabelas fato (leituras por ciclo) e dimensões (motor, cenário, modo de falha, sensor, tempo).
+\item \textbf{Modelagem Dimensional:} Construção de um \textit{Data Mart} voltado à análise de saúde da frota de motores, com tabelas fato (leituras por ciclo) e dimensões (motor, cenário, modo de falha, sensor e tempo ou ciclo).
 \item \textbf{Integração com a Camada de BI:} Conexão do modelo ao ambiente analítico, permitindo visualizações interativas e consultas exploratórias sobre os sensores e parâmetros operacionais.
 \end{enumerate}
-
-\section{Base de Dados Operacional (OLTP)}
-\textit{(A fonte de dados para este projeto não é um sistema OLTP transacional, mas sim os arquivos estáticos \texttt{.txt} fornecidos pela NASA, que representam logs de simulação. A Camada Bronze do nosso Data Warehouse atua como a primeira persistência desses dados brutos.)}
-\newpage
 
 \section{Arquitetura de Dados e Stack de Tecnologias}
 A construção da plataforma de BI segue uma arquitetura de dados moderna baseada no conceito \textbf{Medallion} (Bronze, Silver, Gold) - Figura \ref{fig:medallion}. Esta abordagem organiza o fluxo de tratamento dos dados em etapas claras de qualidade e transformação, garantindo que os dados consumidos na camada final de BI sejam limpos, integrados e confiáveis.
@@ -307,25 +299,82 @@ A construção da plataforma de BI segue uma arquitetura de dados moderna basead
 \subsection{Stack de Tecnologias Utilizada}
 A implementação desta arquitetura foi realizada utilizando a seguinte stack de tecnologias:
 \begin{itemize}
-    \item \textbf{Linguagem de Programação (ETL):} Python 3, com uso da biblioteca \texttt{pandas} para manipulação, transformação e processamento dos dados.
-    \item \textbf{Banco de Dados (Data Warehouse):} MySQL, um sistema de gerenciamento de banco de dados relacional (SGBDR) objeto-relacional, escolhido para armazenar as três camadas do Data Warehouse (Bronze, Silver e Gold).
+    \item \textbf{Linguagem de Programação (ETL):} Python 3, com uso da biblioteca \texttt{pandas} e \texttt{PySpark} para manipulação, transformação e processamento dos dados.
+    \item \textbf{Banco de Dados (Data Warehouse):} MySQL, um sistema de gerenciamento de banco de dados relacional (SGBDR) objeto-relacional, escolhido para armazenar as duas primeiras camadas do Data Warehouse (Bronze e Silver).
     \item \textbf{Ferramenta de BI (Consumo):} O destino final dos dados (Camada Gold) é ser consumido por uma ferramenta de visualização como Microsoft Power BI, onde os dashboards de engenharia serão construídos.
 \end{itemize}
 
 \subsection{Modelo Lógico e Dimensional (DataMart)}
-O objetivo final é a \textbf{Camada Gold}, que funcionará como o DataMart dimensional. Esta camada será modelada em um esquema \textit{Star Schema} (ou floco de neve, se necessário), otimizado para consultas analíticas de BI. Ela será composta por:
+A \textbf{Camada Silver} funcionará como o DataMart dimensional. Esta camada será modelada em um esquema \textit{Star Schema}, otimizado para consultas analíticas de BI. 
+
+Ela será composta por:
+
 \begin{itemize}
-    \item \textbf{Tabela Fato:} Uma tabela central (ex: \texttt{Fato\_Leituras}) contendo as métricas principais (leituras de sensores, RUL) e as chaves estrangeiras para as dimensões.
-    \item \textbf{Tabelas de Dimensão:} Tabelas que fornecem o contexto para a análise (ex: \texttt{Dim\_Motor}, \texttt{Dim\_Cenario\_Teste}, \texttt{Dim\_Tempo}, \texttt{Dim\_Condicao\_Operacional}).
+    \item \textbf{Tabela Fato:} Uma tabela central (ex: \texttt{Fato\_Leituras}) contendo as métricas principais (leituras de sensores etc.) e as chaves estrangeiras para as dimensões.
+    \item \textbf{Tabelas de Dimensão:} Tabelas que fornecem o contexto para a análise (ex: \texttt{Dim\_Motor}, \texttt{Dim\_Configuracao}, \texttt{Dim\_Ciclo}, \texttt{Dim\_Descricao\_Sensores}).
 \end{itemize}
-O trabalho realizado até o momento (detalhado a seguir) focou na construção das camadas Bronze e Silver, que são pré-requisitos para a criação deste DataMart.
+
+A arquitetura do Data Mart pode ser vista no diagrama ilustrado na Figura \ref{fig:big_data_diagram}.
+
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth*3/4]{images/arquitetura.png}
+    \caption{Arquitetura do Data Mart.}
+    \label{fig:big_data_diagram}
+\end{figure}
+
+\FloatBarrier
+
+Posteriormente, na \textbf{Camada Gold}, é adicionada a dimensão de descrição de sensores, para auxiliar na interpretação de \textit{Business Intelligence} (BI) no \textit{Microsoft PowerBI} - conforme reforoçado na Tabela \ref{table:descricao_sensores}.
+
+\vspace{1em}
+
+\begin{table}[h!]
+    \centering
+    \caption{Descrição dos Sensores Utilizados no Modelo Termodinâmico}
+    \label{table:descricao_sensores}
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Nome\_Sensor} & \textbf{Descrição do Sensor} & \textbf{Unidade} \\
+        \hline
+        sensor1  & T2 - Temp. Entrada Fan                & °R \\
+        sensor2  & T24 - Temp. Saída LPC                 & °R \\
+        sensor3  & T30 - Temp. Saída HPC                 & °R \\
+        sensor4  & T50 - Temp. Saída LPT                 & °R \\
+        sensor5  & P2 - Pressão Entrada Fan              & psia \\
+        sensor6  & P15 - Pressão Bypass                  & psia \\
+        sensor7  & P30 - Pressão Total HPC               & psia \\
+        sensor8  & Nf - Rotação Fan                      & rpm \\
+        sensor9  & Nc - Rotação Core                     & rpm \\
+        sensor10 & EPR - Razão de Pressão                & - \\
+        sensor11 & Ps30 - Pressão Estática HPC           & psia \\
+        sensor12 & phi - Razão Combustível/Ar            & - \\
+        sensor13 & NRf - Rotação Fan (Corrigida)         & rpm \\
+        sensor14 & NRc - Rotação Core (Corrigida)        & rpm \\
+        sensor15 & BPR - Razão de Bypass                 & - \\
+        sensor16 & farB - Razão Combust./Ar (Queimador)  & - \\
+        sensor17 & htBleed - Entalpia de Sangria         & BTU/lbm \\
+        sensor18 & Nf\_dmd - Rotação Fan (Demandada)     & rpm \\
+        sensor19 & PCNfR\_dmd - Rotação Fan Corr. (Demandada) & rpm \\
+        sensor20 & HPT - Refrigeração                    & lbm/s \\
+        sensor21 & LPT - Refrigeração                    & lbm/s \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\vspace{1em}
+
+Além disso, nessa mesma fase, a tabela \texttt{fact\_leitura\_ciclo} foi transformada, gerando linhas a partir das colunas dos diferentes sensores - isso permite que os sensores sejam filtrados nas análises, corretamente.
+
 \newpage
 
 \section{Processo de Extração, Transformação e Carga (ETL)}
 O processo de ETL é o núcleo da engenharia de dados deste projeto, responsável por mover e tratar os dados desde a fonte bruta até o DataMart analítico.
 
-\subsection{Trabalho Realizado (Camadas Bronze e Silver)}
-O progresso atual do projeto compreende a extração e a transformação inicial dos dados, fundamentais para a criação do DataMart.
+\subsection{Camadas Bronze e Silver}
+A extração e a transformação inicial dos dados, fundamentais para a criação do DataMart, é realizada nessas camadas: \textbf{Bronze} e \textbf{Silver}.
 
 \subsubsection{Camada Bronze: Ingestão de Dados Brutos}
 A primeira etapa, correspondente à \textbf{Camada Bronze}, consistiu na extração dos dados brutos dos quatro arquivos \texttt{train\_FD00X.txt} do dataset C-MAPSS. 
@@ -333,7 +382,7 @@ Um script em Python (\texttt{extracao.py}) foi desenvolvido para:
 \begin{itemize}
     \item Ler os arquivos de texto, que são formatados com espaços e não possuem cabeçalho.
     \item Atribuir os nomes corretos às 26 colunas (ID do motor, ciclo, 3 configurações operacionais e 21 sensores).
-    \item Adicionar uma coluna \texttt{dataset\_source} para identificar a origem de cada registro (ex: 'FD001'), o que é essencial para a futura \texttt{Dim\_Cenario\_Teste}.
+    \item Adicionar uma coluna \texttt{fd\_id} para identificar a origem de cada registro (ex: 'FD001'), o que é essencial para a futura \texttt{Dim\_Configuracao}.
     \item Carregar esses dados brutos, sem nenhuma outra transformação, em uma tabela de \textit{staging} no MySQL, cujo schema foi definido no script \texttt{cria\_schema.sql}.
 \end{itemize}
 
@@ -346,11 +395,11 @@ A \textbf{Camada Silver} representa a fonte de verdade limpa, validada e integra
 \end{itemize}
 
 
-\subsection{Definição e Hipótese do KPI Central: o RUL}
-\subsubsection{O que é o RUL?}
+\subsection{Definição e Hipótese do KPI}
+
 A Vida Útil Remanescente, ou RUL (\textit{Remaining Useful Life}), é o KPI central deste projeto. Ele representa uma estimativa de quantos ciclos de operação um motor ainda possui antes de atingir um ponto de falha - podendo servir como parâmetro para identificação de um estágio seguro de degradação para a manutenção.
 
-\subsubsection{A Hipótese do Projeto: BI como Consumidor de ML}
+\subsubsection{BI como Consumidor}
 Na prática industrial, o RUL de um motor em operação é um valor desconhecido que precisa ser previsto. Esse prognóstico é uma tarefa clássica de Ciência de Dados e Machine Learning (ML), onde um modelo é treinado em dados históricos (como os do C-MAPSS) para aprender os padrões de degradação dos sensores que antecedem uma falha.
 
 Para os fins deste projeto de DataMart e Business Intelligence, a premissa estabelecida é que este modelo de ML já existe e gerou a estimativa para as diferentes condições dos motores.
@@ -362,24 +411,128 @@ Nossa plataforma de BI não é responsável por criar a previsão. Ela atua na e
     \item \textbf{Analisar:} Permitir que um engenheiro de confiabilidade monitore a queda do RUL e investigue os dados dos sensores que justificam aquela previsão.
 \end{itemize}
 
-Para simular o recebimento deste KPI no nosso processo de ETL, usaremos os dados de treino do C-MAPSS (onde a falha é conhecida) para calcular o RUL verdadeiro através de aritmética simples (ex: \texttt{RUL = Ciclo\_Maximo - Ciclo\_Atual}). Este RUL calculado na Camada Silver servirá como o \texttt{RUL\_Previsto} em nosso DataMart.
-
+Para simular o recebimento deste KPI no nosso processo de ETL, serão usados os dados de treino do C-MAPSS (onde a falha é conhecida) para analisar em função do ciclo máximo de operação - aquele onde ocorre a falha do motor simulado. Isso reduz a complexidade do modelo e das análises deste projeto. 
 \newpage
 
+\section{Infraestrutura e Containerização}
+
+Para garantir a portabilidade, isolamento e reprodutibilidade do ambiente de desenvolvimento, a solução foi implementada utilizando a plataforma \textbf{Docker}. A arquitetura foi definida no padrão de microsserviços, orquestrada via \textit{Docker Compose}, segregando a camada de armazenamento (Banco de Dados) da camada de processamento (Aplicação ETL).
+
+A infraestrutura é composta por dois serviços principais definidos no arquivo para orquestração: \texttt{docker-compose.yml}.
+
+\begin{itemize}
+    \item \textbf{Serviço de Banco de Dados (\texttt{mysql-db}):} Utiliza a imagem oficial \texttt{mysql:8.0}. Este container é responsável pela persistência dos dados das camadas Bronze e Silver.
+    \begin{itemize}
+        \item \textbf{Inicialização Automática:} Através do mapeamento de volumes no diretório, os scripts SQL de criação dos schemas (Bronze e Silver) são executados automaticamente na primeira inicialização do container.
+        \item \textbf{Configuração de Rede:} O serviço expõe a porta 3307 para o host, evitando conflitos com instalações locais do MySQL na porta padrão 3306.
+    \end{itemize}
+    
+    \item \textbf{Serviço de Aplicação (\texttt{etl-app}):} Container construído a partir de uma imagem Python customizada (definida no \texttt{dockerfile}). Este ambiente contém todas as dependências necessárias para a execução dos pipelines, incluindo as bibliotecas \textit{Pandas}, \textit{PySpark} e o conector do MySQL.
+    \begin{itemize}
+        \item \textbf{Volumes:} O código-fonte (\texttt{src/}) e os dados brutos (\texttt{data/}) são mapeados do host para o container, permitindo que alterações no código sejam refletidas imediatamente sem necessidade de reconstrução da imagem (rebuild). Basta reiniciar o container para surtir as modificações.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Orquestração da Execução}
+
+A comunicação entre os containers é realizada através de uma rede virtual interna criada pelo Docker, permitindo que a aplicação resolva o endereço do banco de dados pelo nome do serviço (\texttt{mysql-db}), abstraindo endereços IP.
+
+O fluxo de execução é controlado pelo script \texttt{run.sh}, que implementa uma lógica de espera (\textit{wait logic}) para garantir que o banco de dados esteja totalmente operacional antes do início dos processos de ETL, prevenindo falhas de conexão durante a carga inicial.
+
 \section{Consultas Analíticas}
-\textit{(Espaço reservado para a Entrega 6: Apresentação e explicação dos 5 SELECTs com funções analíticas, focados em responder às perguntas de engenharia.)}
+
+A \textbf{Camada Gold} consolida os dados em visões de negócio, permitindo responder a perguntas de engenharia de confiabilidade. Abaixo são apresentadas as consultas analíticas fundamentais desenvolvidas para este projeto, utilizando funções de janela (\textit{window functions}) e agregações do MySQL 8.0.
+
+As consultas realizadas nessa camada são expostas na Tabela \ref{table:funcoes_analiticas} e vão ao encontro das perguntas-chave definidas anteriormente.
+
+\begin{table}[h!]
+    \centering
+    \caption{Resumo das Funções Analíticas e Perguntas de Negócio Respondidas}
+    \label{table:funcoes_analiticas}
+    \begin{tabular}{c c p{7.5cm} p{4cm}}
+        \hline
+        \textbf{ID} & \textbf{Função} & \textbf{Pergunta de Negócio Respondida} & \textbf{Dimensões Analisadas} \\
+        \hline
+        1 & ROLLUP      & Qual a temperatura média global e por subnível de altitude?     & Cenário, Altitude \\
+        2 & RANK        & Quem são os motores mais duráveis de cada cenário?              & Cenário, Motor \\
+        3 & LAG         & Qual o impacto térmico incremental ao subir a potência?         & Cenário, Potência (TRA) \\
+        4 & FIRST\_VALUE & Qual o desvio de performance em relação ao motor ideal?        & Cenário, Motor \\
+        5 & DENSE\_RANK  & Quais zonas de altitude causam maior rotação?                  & Cenário, Faixa de Altitude \\
+        6 & ROLLUP      & Qual o ciclo de falha médio para cada configuração?            & Cenário, Número de Ciclo \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
 \newpage
 
 % CAPÍTULO 3: RESULTADOS E ANÁLISE 
 \chapter[Resultados e Análise]{Resultados e Análise (Dashboard)}
-\textit{(Espaço reservado para a Entrega 7: Apresentação dos 5 gráficos/dashboard e a análise dos insights de engenharia.)}
+\label{chap:resultados}
+
+A etapa final do fluxo de dados consiste na visualização das informações processadas na camada \textit{Gold}. Para isso, foi desenvolvido um dashboard no Microsoft Power BI.
+
+O dashboard conecta-se diretamente ao banco de dados MySQL (tabelas fatos e dimensões) e traduz as consultas analíticas apresentadas no capítulo anterior em indicadores visuais para suporte à decisão. A navegação foi estruturada em três páginas distintas, detalhadas a seguir.
+
+\section{Escala Microscópica (Diagnóstico do Motor)}
+
+A primeira página do painel, apresentada na Figura \ref{fig:dash_geral}, oferece uma consciência situacional imediata sobre o estado de toda a frota de motores simulada.
+
+O objetivo desta tela é permitir que o analista possa visualizar e até identificar anomalias a partir das séries temporais das leituras realizadas pelos sensores sobre as diferentes configurações (cenários de simulação).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/dashboard1.png} 
+    \caption{Dashboard - Visão Geral da Saúde da Frota}
+    \label{fig:dash_geral}
+\end{figure}
+
+Dentre os principais elementos visuais, vale destacar:
+\begin{itemize}
+    \item \textbf{Configuração do Cenário}: Exibe para cada cenário, os gráficos de linha referentes à altitude, ao número de Mach (Ma) e também a posição da manete de potência. Exibindo também nos cartões a média de cada uma dessas configurações durante o cenário;
+    \item \textbf{Seleção do Motor em Análise}: Pode-se selecionar um motor específico que foi simulado para fazer o levantamento dos dados;
+    \item \textbf{Seleção do Sensor de Interesse}: Além do motor, seleciona-se também o sensor a ser analisado - onde há uma descrição do que ele representa - permitindo que o analista monitore diferentes fenômenos nas leituras.  
+\end{itemize}
+
+\section{Escala Mesoscópica (Análise Comparativa)}
+
+A segunda página foca na análise comparativa entre os ativos. Esta visualização permite segregar os motores de alta performance dos motores problemáticos. Conforme observado na Figura \ref{fig:dash_rank}, a engenharia pode priorizar quais motores necessitam de uma atenção especial - com maior propensão a falhas etc.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/dashboard2.png} 
+    \caption{Dashboard - Análise Comparativa e Ranking de Confiabilidade}
+    \label{fig:dash_rank}
+\end{figure}
+
+O destaque dessa análise vai para o valor comparativo gerado entre os motores submetidos aos mesmos cenários de simulação.
+
+\section{Escala Macroscópica (Visão Global)}
+
+A terceira página, ilustrada na Figura \ref{fig:dash_tec}, é destinada a uma visão global dos cenários aos quais os motores são expostos (via simulação). Nela, pode-se verificar como as configurações dos cenários afetam variáveis de interesse. Além disso, trás uma análise comparativa sobre o tempo de vida útil (ciclo máximo atingido na simulação) por cenário.  
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/dashboard3.png} 
+    \caption{Dashboard - Detalhamento Técnico dos Sensores}
+    \label{fig:dash_tec}
+\end{figure}
 
 % CONCLUSÃO
 \chapter*{Conclusão}
 \phantomsection
 \addcontentsline{toc}{chapter}{Conclusão}
 
-Este projeto propõe uma arquitetura de Business Intelligence robusta, focada em atender às necessidades da Engenharia de Confiabilidade. Ao transformar dados de simulação de alta fidelidade em uma plataforma analítica, espera-se demonstrar o valor do BI como ferramenta de diagnóstico e suporte à decisão no ciclo de vida de componentes complexos, como motores aeronáuticos.
+O presente trabalho atingiu seu objetivo principal ao projetar e implementar uma arquitetura de Business Intelligence completa, capaz de transformar dados brutos de sensores de motores turbofan em indicadores acionáveis para a Engenharia de Confiabilidade. 
+
+A validação da infraestrutura containerizada (Docker) demonstrou que é possível construir um ambiente de dados reprodutível e isolado, eliminando a barreira técnica de configuração de ambiente. O fluxo de ETL proposto, estruturado nas camadas Bronze, Silver e Gold, provou-se eficaz não apenas na higienização dos dados do \textit{dataset} C-MAPSS, mas fundamentalmente na preparação de uma base analítica performática.
+
+A entrega final do dashboard, apresenta a visualização de dados em múltiplos níveis de granularidade que é essencial para a gestão de ativos complexos:
+\begin{itemize}
+    \item A visão \textbf{Macro} permitiu a gestão logística da frota;
+    \item A visão \textbf{Meso} facilitou a identificação de \textit{outliers} e comparação de performance;
+    \item A visão \textbf{Micro} habilitou o diagnóstico técnico detalhado de falhas incipientes.
+\end{itemize}
 
 % --- ELEMENTOS PÓS-TEXTUAIS ---
 \postextual
