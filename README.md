@@ -1,4 +1,6 @@
-# Cockpit de Saúde da Frota: Análise Preditiva para Manutenção de Motores Aeronáuticos
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&style=flat-square)](https://www.python.org) [![Power BI](https://img.shields.io/badge/Power%20BI-Desktop-yellow?logo=microsoft-power-bi&style=flat-square)](https://powerbi.microsoft.com) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql&style=flat-square)](https://www.mysql.com) [![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.0-orange?logo=apache-spark&style=flat-square)](https://spark.apache.org)
+
+# Análise BI para Motores Aeronáuticos
 
 Este repositório contém o desenvolvimento de um protótipo de **Business Intelligence (BI)** focado em **Manutenção Preditiva (CBM)** para a gestão da saúde de motores turbofan. O projeto visa transformar dados brutos de sensores em *insights* de negócio valiosos, demonstrando como otimizar operações críticas, aumentar a segurança e gerar economia significativa para a indústria aeronáutica.
 
@@ -29,37 +31,23 @@ O projeto implementa uma solução de BI completa, que inclui modelagem operacio
 | :--- | :--- |
 | **Dataset Fonte** | [**NASA Turbofan Jet Engine Data Set**](https://www.kaggle.com/datasets/behrad3d/nasa-cmaps) (C-MAPSS) da NASA - obtido através da plataforma [Kaggle](https://www.kaggle.com/). É um dataset público considerado um padrão para o desenvolvimento de sistemas de prognóstico. |
 | **Base OLTP** | Modelagem e implementação da base de dados operacional em **PostgreSQL** a partir dos dados brutos. |
-| **DataMart** | Construção de um **Modelo Dimensional (Star Schema)**. O DataMart é **enriquecido com dimensões de negócio** hipotéticas, mas realistas, como Frota/Cliente e Custo de Manutenção. |
+| **DataMart** | Construção de um **Modelo Dimensional (Star Schema)**. |
 | **Processo ETL** | Desenvolvimento do processo de **Extração, Transformação e Carga (ETL)** para popular o DataMart. |
-| **Métrica Chave (RUL)** | **Vida Útil Remanescente (RUL - Remaining Useful Life):** KPI de engenharia que estima o número de ciclos de operação (voos) restantes antes da falha crítica. O ETL **calcula o RUL verdadeiro** usando a fórmula $RUL = Ciclo\_Máximo - Ciclo\_Atual$ para simular um valor fornecido por um sistema de Machine Learning externo. |
 | **Consultas Analíticas** | Elaboração de consultas complexas com **funções de janela** (`RANK`, `LEAD`, etc.) para extrair *insights* estratégicos do DataMart. |
-| **Dashboard** | Construção de um dashboard interativo em **Power BI** ou **Tableau** que apresente os resultados de forma clara e acionável para um gestor de frota. |
+| **Dashboard** | Construção de um dashboard interativo em **Power BI** que apresente os resultados de forma clara e acionável para um **gestor de engenharia**. |
 
 ## ❓ Perguntas de Negócio a Serem Respondidas
 
-A arquitetura de BI proposta deverá permitir análises que respondam a perguntas críticas para a gestão de manutenção e operações:
+A arquitetura de BI proposta deverá permitir análises que respondam a perguntas críticas para a gestão de engenharia e operações:
 
-* **Pergunta (1)**: Desvio Médio da Baseline por Configuração e Cenário: Em média, como o desvio do Sensor 4 em relação à sua leitura inicial (baseline) varia entre as diferentes configurações operacionais (setting1) dentro de cada cenário de teste (FD00x)?
-    - **Objetivo**: Medir o grau de desgaste cumulativo (media_desvio_baseline_s4) em diferentes condições de voo, fornecendo subtotais hierárquicos para contextualização gerencial (ROLLUP).
-
-* **Pergunta (2)**: Priorização de Inspeção com Base no Risco de Falha Precoce: Qual é o ranking de risco de falha mais precoce para cada motor (motor_nr) dentro de seu respectivo cenário de teste (FD00x)?
-    - **Objetivo**: Priorizar a inspeção e manutenção (P3), identificando os motores mais críticos por meio de diferentes classificações de risco (RANK, DENSE_RANK, ROW_NUMBER).
-
-* **Pergunta (3)**: Análise da Tendência de Degradação (Próximo Ciclo): Qual é o desvio cumulativo do Sensor 13 em relação à baseline e qual a variação esperada no próximo ciclo (LEAD) para cada motor?
-
-    - **Objetivo**: Suporte direto à análise de degradação progressiva, combinando o desgaste total (desvio_baseline_s13) com a projeção de tendência imediata (variacao_proximo_ciclo_s13).
-
-* **Pergunta (4)**: Correlação da Taxa de Variação entre Sensores Críticos: Existe uma correlação entre a taxa de variação ciclo-a-ciclo do Sensor 6 (Pressão) e a do Sensor 11 (Temperatura) em cada motor?
-    - **Objetivo**: Mapear a interdependência entre subsistemas (P6) ao analisar se o aumento ou diminuição brusca em um sensor é acompanhado pelo outro (LAG).
-
-* **Pergunta (5)**: Ciclo de Falha Médio Esperado (KPI de Confiabilidade): Qual é o Ciclo de Falha Médio Esperado para cada cenário de teste (FD00x), e como isso se compara à média geral da frota?
-    - **Objetivo**: Estabelecer um KPI de benchmark de confiabilidade (P5) para que os gestores possam comparar a longevidade esperada em diferentes condições de operação (ROLLUP).
-
-* **Pergunta (6)**: É possível identificar correlação entre sensores específicos antes da falha?
-    - **Objetivo**: Objetivo: Permite mapear interdependência entre subsistemas (compressor, turbina, etc.).
-
-* **Pergunta (7)**: Como o comportamento temporal dos sensores evolui nos últimos ciclos antes da falha?
-    - **Objetivo**: Suporte direto a análises de degradação progressiva.
+| ID | Funções     | Pergunta de Negócio Respondida                               | Dimensões Analisadas         | 
+|:--:| :---------: | :----------------------------------------------------------- | :--------------------------- |
+| 1  | ROLLUP      | Qual a temperatura média global e por subnível de altitude?  | "Cenário, Altitude"          |
+| 2  | RANK        | Quem são os motores mais duráveis de cada cenário?           | "Cenário, Motor"             |
+| 3  | LAG         | Qual o impacto térmico incremental ao subir a potência?      | "Cenário, Potência (TRA)"    |
+| 4  | FIRST_VALUE | Qual o desvio de performance em relação ao motor ideal?      | "Cenário, Motor"             |
+| 5  | DENSE_RANK  | Quais zonas de altitude causam maior rotação?                | "Cenário, Faixa de Altitude" |
+| 6  | ROLLUP      | Qual o ciclo de falha médio para cada configuração?          | "Cenário, Número de Ciclo"   |
 
 
 ## 🚀 Tecnologias
@@ -70,11 +58,21 @@ A arquitetura de BI proposta deverá permitir análises que respondam a pergunta
 * **Processamento ETL:**  Python, Pandas, Apache Spark (via PySpark)
 * **Visualização/BI:** Power BI 
 
+## 📦 Estrutura repositório
+
+A estrutura do repositório é dividida em:
+
+- `src/` : Código-fonte Python para ETL (contém `bronze/` e `silver/`).
+- `data/` : Local para datasets brutos (arquivos brutos `train_FD*.txt` aqui).
+- `sql/`  : Scripts SQL organizados por camada (`bronze/`, `silver/`, `gold/`).
+- `docs/` : Fonte LaTeX do relatório para entrega como para aprovação na disciplina.
+
+
 ## 🛠️ Como Executar o Projeto
 
 O projeto é completamente orquestrado com Docker Compose. Siga os passos abaixo para executar o pipeline completo.
 
-* **Pré-requisitos**: Docker Desktop instaldo e em execução na sua máquina.
+* **Pré-requisitos**: Docker Desktop instalado e em execução na sua máquina.
 
 ### 1. Configuração do Ambiente
 
@@ -97,7 +95,7 @@ docker-compose up --build
 
 Este comando irá:
 1. Construir a imagem Docker da aplicação, instalando Java, Python e as dependências do Spark;
-2. Iniciar um contêiner para o banco de dados MySQL e criar os chemas das tabelas;
+2. Iniciar um contêiner para o banco de dados MySQL e criar os schemas das tabelas;
 3. Iniciar o contêiner da aplicação, que executará os scripts `extracao.py` e `silver_tratamento.py` em sequência, populando as tabelas Bronze e Silver;
 
 ### 3. Verificando o Resultado

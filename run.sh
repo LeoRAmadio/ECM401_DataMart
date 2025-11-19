@@ -8,14 +8,11 @@ sleep 20
 
 ## BRONZE
 echo "Iniciando a extração para a camada Bronze..."
-python3 ./BRONZE/extracao.py
+python3 ./src/bronze/extracao.py
 
 ## SILVER
 echo "Iniciando a transformação para a camada Silver..."
-python3 ./SILVER/silver_tratamento.py
-
-## GOLD
-echo "Camada Gold - [em desenvolvimento...]"
+python3 ./src/silver/silver_tratamento.py
 
 # Finaliza o script
 echo "Processo concluído."

@@ -10,8 +10,8 @@ services:
     ports:
       - "3307:3306" # Resolve conflito com serviço MySQL80
     volumes:
-      - ./BRONZE/cria_schema.sql:/docker-entrypoint-initdb.d/1_cria_schema_bronze.sql
-      - ./SILVER/silver_script.sql:/docker-entrypoint-initdb.d/2_cria_schema_silver.sql
+      - ./sql/bronze/cria_schema.sql:/docker-entrypoint-initdb.d/1_cria_schema_bronze.sql
+      - ./sql/silver/silver_script.sql:/docker-entrypoint-initdb.d/2_cria_schema_silver.sql
 
   app:
     build: .
@@ -23,7 +23,7 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./BRONZE:/app/BRONZE
-      - ./SILVER:/app/SILVER
-      - ./GOLD:/app/GOLD
+      - ./src:/app/src
+      - ./data:/app/data
+      - ./sql:/app/sql
       - ./run.sh:/app/run.sh
