@@ -1,0 +1,8 @@
+# Define o padrão LF para arquivos Shell Script, Dockerfile e Raw Data
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.txt text eol=lf
+
+# Para arquivos Python, SQL e outros, utiliza-se 'auto'
+*.py text=auto
+*.sql text=auto
