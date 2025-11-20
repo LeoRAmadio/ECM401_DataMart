@@ -1,10 +1,12 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&style=flat-square)](https://www.python.org) [![Power BI](https://img.shields.io/badge/Power%20BI-Desktop-yellow?logo=microsoft-power-bi&style=flat-square)](https://powerbi.microsoft.com) [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql&style=flat-square)](https://www.mysql.com) [![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.0-orange?logo=apache-spark&style=flat-square)](https://spark.apache.org)
 
-# Análise BI para Motores Aeronáuticos
+# ✈️ Análise BI para Motores Turbofan
 
-Este repositório contém o desenvolvimento de um protótipo de **Business Intelligence (BI)** focado em **Manutenção Preditiva (CBM)** para a gestão da saúde de motores turbofan. O projeto visa transformar dados brutos de sensores em *insights* de negócio valiosos, demonstrando como otimizar operações críticas, aumentar a segurança e gerar economia significativa para a indústria aeronáutica.
+Este projeto implementa um pipeline de Business Intelligence (BI) focado na Manutenção Preditiva (CBM) de motores turbofan. Utilizando dados simulados da NASA (CMAPSS), extraindo indicadores estratégicos de leituras brutas de sensores para monitoramento da saúde dos motores, visando o aumento da segurança e a redução de custos operacionais.
 
 > O trabalho foi desenvolvido para aprovação na disciplina ECM401 Banco de Dados, do Instituto Mauá de Tecnologia.
+
+O relatório do projeto está disponível em: [📄 Relatório do Projeto](relatorio.pdf).
 
 ## Integrantes do Grupo 
 
@@ -21,7 +23,7 @@ O problema de negócio a ser resolvido é o alto custo e a ineficiência associa
 
 Nossa proposta é desenvolver um **Cockpit de Saúde da Frota**:
 * ✅ **Sistema de BI** que serve como prova de conceito (proof of concept) de um DataMart para um dashboard.
-* ✈️ **Objetivo de Negócio:** Transformar dados brutos de sensores em indicadores acionáveis, permitindo decisões proativas para aumentar a segurança, reduzir custos com manutenção não programada e otimizar a disponibilidade da frota.
+* ⚙️ **Objetivo de Negócio:** Transformar dados brutos de sensores em indicadores acionáveis, permitindo decisões proativas para aumentar a segurança, reduzir custos com manutenção não programada e otimizar a disponibilidade da frota.
 * 📉 **Relatórios da indústria sugerem que a manutenção preditiva pode reduzir custos gerais de manutenção em 15-20% e diminuir paradas não planejadas em até 50%**.
 
 ## ⚙️ Arquitetura e Componentes
@@ -119,3 +121,5 @@ Para parar e remover todos os contêineres e redes criadas, pressione `Ctrl + C`
 ```bash
 docker-compose down
 ```
+
+--- 
