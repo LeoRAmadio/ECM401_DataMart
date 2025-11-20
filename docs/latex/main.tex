@@ -1,4 +1,3 @@
-% PREÂMBULO DO DOCUMENTO
 
 \documentclass[
     12pt,            % Tamanho da fonte
@@ -155,12 +154,16 @@ A construção da plataforma de Business Intelligence (BI) proposta neste trabal
 
 O Modelo Lógico Relacional representa a base operacional de onde os dados do C-MAPSS seriam extraídos. Ele foi normalizado para a Terceira Forma Normal (3NF) para garantir a integridade e otimizar as transações. O script SQL que gera o OLTP pode ser encontrado na pasta 'bronze' dentro da pasta 'sql'. O diagrama, conforme gerado pelo MySQL Workbench, é apresentado na Figura \ref{fig:diagrama_oltp}.
 
+\FloatBarrier
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{oltp.jpeg} 
+    \includegraphics[width=\textwidth*4/5]{images/oltp.jpeg} 
     \caption{Modelo Lógico Relacional (OLTP) da Base Operacional C-MAPSS}
     \label{fig:diagrama_oltp}
 \end{figure}
+
+\FloatBarrier
 
 \subsection{Tabelas do Modelo OLTP}
 

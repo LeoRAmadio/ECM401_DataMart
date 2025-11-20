@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.16)  19 NOV 2025 19:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.16)  19 NOV 2025 23:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -640,7 +640,7 @@ LaTeX Info: Redefining \newblock on input line 591.
 LaTeX Info: Redefining \cite on input line 862.
 \ABCItoken=\toks31
 )
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 76.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 75.
  (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (main.aux
@@ -649,25 +649,25 @@ Package babel Info: 'brazil' activates 'portuges' shorthands.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-Package hyperref Info: Link coloring OFF on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+Package hyperref Info: Link coloring OFF on input line 75.
 \myptabbox=\box66
 \myptabboxwidth=\skip265
  (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
@@ -724,7 +724,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count387
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 79.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 78.
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
@@ -733,24 +733,24 @@ File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 
 {C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 81.
+(Font)              <12> on input line 80.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 81.
+(Font)              <8> on input line 80.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 81.
+(Font)              <6> on input line 80.
 
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.81 
+l.80 
       [1
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 84--88
+Underfull \hbox (badness 10000) in paragraph at lines 83--87
 
  []
 
@@ -765,143 +765,155 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--88
 ])
 
 [4]
-<images/terabytes_iot_aircraft.png, id=97, 6134.92pt x 2698.08pt>
+<images/terabytes_iot_aircraft.png, id=101, 6134.92pt x 2698.08pt>
 File: images/terabytes_iot_aircraft.png Graphic file (type png)
 <use images/terabytes_iot_aircraft.png>
-Package pdftex.def Info: images/terabytes_iot_aircraft.png  used on input line 112.
+Package pdftex.def Info: images/terabytes_iot_aircraft.png  used on input line 111.
 (pdftex.def)             Requested size: 455.24411pt x 200.20647pt.
 
 
 [5
 
 ]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 130.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 129.
  (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 
 Package babel Info: 'brazil' activates 'portuges' shorthands.
-(babel)             Reported on input line 132.
+(babel)             Reported on input line 131.
 [6 <./images/terabytes_iot_aircraft.png (PNG copy)>]
 
 [7]
-<images/turbofan_model.png, id=115, 4215.75pt x 2617.78pt>
-File: images/turbofan_model.png Graphic file (type png)
-<use images/turbofan_model.png>
-Package pdftex.def Info: images/turbofan_model.png  used on input line 165.
-(pdftex.def)             Requested size: 284.52756pt x 176.67255pt.
+<images/oltp.jpeg, id=119, 961.5925pt x 755.82375pt>
+File: images/oltp.jpeg Graphic file (type jpg)
+<use images/oltp.jpeg>
+Package pdftex.def Info: images/oltp.jpeg  used on input line 161.
+(pdftex.def)             Requested size: 364.19528pt x 286.25877pt.
 
 
 [8
 
-]
-Overfull \hbox (0.846pt too wide) in paragraph at lines 181--182
+ <./images/oltp.jpeg>]
+Overfull \hbox (2.02281pt too wide) in paragraph at lines 172--173
+[]\T1/ptm/b/n/12 TAB_CONFIGURACAO_OLTP: \T1/ptm/m/n/12 Ar-ma-zena as con-di-ções ope-ra-ci-o-nais úni-cas (set-ting1,
+ []
+
+<images/turbofan_model.png, id=126, 4215.75pt x 2617.78pt>
+File: images/turbofan_model.png Graphic file (type png)
+<use images/turbofan_model.png>
+Package pdftex.def Info: images/turbofan_model.png  used on input line 189.
+(pdftex.def)             Requested size: 284.52756pt x 176.67255pt.
+
+
+[9]
+Overfull \hbox (0.846pt too wide) in paragraph at lines 205--206
 []\T1/ptm/b/n/12 Expansão (adi-a-bá-tico): \T1/ptm/m/n/12 Os ga-ses quen-tes re-sul-tan-tes pas-sam pe-las tur-bi-nas de alta (HPT)
  []
 
-<images/brayton.png, id=123, 560.8453pt x 220.57407pt>
+<images/brayton.png, id=134, 560.8453pt x 220.57407pt>
 File: images/brayton.png Graphic file (type png)
 <use images/brayton.png>
-Package pdftex.def Info: images/brayton.png  used on input line 189.
+Package pdftex.def Info: images/brayton.png  used on input line 213.
 (pdftex.def)             Requested size: 455.24411pt x 179.04095pt.
 
 
-[9 <./images/turbofan_model.png (PNG copy)>]
+[10 <./images/turbofan_model.png (PNG copy)>]
 
-[10 <./images/brayton.png>]
-
-[11]
+[11 <./images/brayton.png>]
 
 [12]
 
 [13]
-<images/medallion_architecture.png, id=162, 1464.2203pt x 455.45157pt>
+
+[14]
+<images/medallion_architecture.png, id=173, 1464.2203pt x 455.45157pt>
 File: images/medallion_architecture.png Graphic file (type png)
 <use images/medallion_architecture.png>
-Package pdftex.def Info: images/medallion_architecture.png  used on input line 292.
+Package pdftex.def Info: images/medallion_architecture.png  used on input line 316.
 (pdftex.def)             Requested size: 455.24411pt x 141.6055pt.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 302.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 326.
  (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (14.66025pt too wide) in paragraph at lines 302--303
+Overfull \hbox (14.66025pt too wide) in paragraph at lines 326--327
 []\T1/ptm/b/n/12 Linguagem de Pro-gra-ma-ção (ETL): \T1/ptm/m/n/12 Python 3, com uso da bi-bli-o-teca \T1/pcr/m/n/12 pandas \T1/ptm/m/n/12 e \T1/pcr/m/n/12 PySpark
  []
 
 
 
-[14 <./images/medallion_architecture.png>]
-Overfull \hbox (0.94356pt too wide) in paragraph at lines 314--315
+[15 <./images/medallion_architecture.png>]
+Overfull \hbox (0.94356pt too wide) in paragraph at lines 338--339
 []\T1/ptm/b/n/12 Tabelas de Di-men-são: \T1/ptm/m/n/12 Ta-be-las que for-ne-cem o con-texto para a aná-lise (ex: \T1/pcr/m/n/12 Dim_Motor\T1/ptm/m/n/12 ,
  []
 
-<images/arquitetura.png, id=170, 445.665pt x 636.87938pt>
+<images/arquitetura.png, id=181, 445.665pt x 636.87938pt>
 File: images/arquitetura.png Graphic file (type png)
 <use images/arquitetura.png>
-Package pdftex.def Info: images/arquitetura.png  used on input line 323.
+Package pdftex.def Info: images/arquitetura.png  used on input line 347.
 (pdftex.def)             Requested size: 341.43307pt x 487.93027pt.
 
 
-[15 <./images/arquitetura.png>]
-
-[16]
+[16 <./images/arquitetura.png>]
 
 [17]
 
 [18]
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
 []|\T1/ptm/m/n/12 Cenário, Po-tên-cia
  []
 
 
-Underfull \hbox (badness 6348) in paragraph at lines 458--459
+Underfull \hbox (badness 6348) in paragraph at lines 482--483
 []|\T1/ptm/m/n/12 Cenário, Nú-mero de
  []
 
 
-Overfull \hbox (11.95401pt too wide) in paragraph at lines 449--461
+Overfull \hbox (11.95401pt too wide) in paragraph at lines 473--485
  [][] 
  []
 
 
 
-[20]
-<images/dashboard1.png, id=204, 1055.44313pt x 593.21625pt>
+[21]
+<images/dashboard1.png, id=215, 1055.44313pt x 593.21625pt>
 File: images/dashboard1.png Graphic file (type png)
 <use images/dashboard1.png>
-Package pdftex.def Info: images/dashboard1.png  used on input line 482.
+Package pdftex.def Info: images/dashboard1.png  used on input line 506.
 (pdftex.def)             Requested size: 455.24411pt x 255.86551pt.
 
 
-[21
+[22
 
  <./images/dashboard1.png>]
-<images/dashboard2.png, id=212, 1052.93375pt x 587.69562pt>
+<images/dashboard2.png, id=223, 1052.93375pt x 587.69562pt>
 File: images/dashboard2.png Graphic file (type png)
 <use images/dashboard2.png>
-Package pdftex.def Info: images/dashboard2.png  used on input line 500.
+Package pdftex.def Info: images/dashboard2.png  used on input line 524.
 (pdftex.def)             Requested size: 455.24411pt x 254.09415pt.
 
 
-[22 <./images/dashboard2.png>]
-<images/dashboard3.png, id=220, 1053.9375pt x 591.71063pt>
+[23 <./images/dashboard2.png>]
+<images/dashboard3.png, id=231, 1053.9375pt x 591.71063pt>
 File: images/dashboard3.png Graphic file (type png)
 <use images/dashboard3.png>
-Package pdftex.def Info: images/dashboard3.png  used on input line 513.
+Package pdftex.def Info: images/dashboard3.png  used on input line 537.
 (pdftex.def)             Requested size: 455.24411pt x 255.58629pt.
 
 
-[23 <./images/dashboard3.png>] (main.bbl
+[24 <./images/dashboard3.png>] (main.bbl
 
-[24
+[25
 
 ]
 bibitemlist
 )
 
-[25
+[26
 
 ]
 \tf@toc=\write4
@@ -914,17 +926,17 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 17331 strings out of 468132
- 273402 string characters out of 5430690
- 723600 words of memory out of 5000000
- 45639 multiletter control sequences out of 15000+600000
+ 17346 strings out of 468132
+ 273654 string characters out of 5430690
+ 723744 words of memory out of 5000000
+ 45650 multiletter control sequences out of 15000+600000
  675887 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,107p,968b,741s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (26 pages, 7468795 bytes).
+Output written on main.pdf (27 pages, 7629338 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 87 named destinations out of 1000 (max. 500000)
- 297 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 428 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 318 words of extra memory for PDF output out of 10000 (max. 10000000)
 

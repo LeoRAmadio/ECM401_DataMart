@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1763592755.64459 "main.aux" "main.bbl" "main" 1763592758.36507 0
+["bibtex main"] 1763607290.08789 "main.aux" "main.bbl" "main" 1763607292.8898 0
   "./referencias.bib" 1763585418 888 a5d01622f9ec4015601e378a52dca8c1 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/bibtex/bib/abntex2/abntex2-options.bib" 1543103229 5396 4eb260dac60f150ae608d45252853090 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/bibtex/bst/abntex2/abntex2-num.bst" 1543103230 60065 0bf58df5e47e1a6c21c910ec88a893f4 ""
-  "main.aux" 1763592757 20922 900390a7dd398811a42d1404d2928107 "pdflatex"
+  "main.aux" 1763607292 22317 a55469281abc336706add780f2b7e4e9 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1763592755.88436 "c:/Users/andre/Projeto/ECM401_DataMart/docs/latex/main.tex" "main.pdf" "main" 1763592758.36558 0
+["pdflatex"] 1763607290.29895 "c:/Users/andre/Projeto/ECM401_DataMart/docs/latex/main.tex" "main.pdf" "main" 1763607292.89034 0
   "C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1762389362 339594 a5b5065d5ac438332843a98ceeded6df ""
   "C:/Users/andre/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1758073025 13257385 9b99413bbfdc1c04cf48b46c3e8fb524 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -141,19 +141,20 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1749468414 7532 26d26e9d8f2ca784270d5da8ec7d102b ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
-  "c:/Users/andre/Projeto/ECM401_DataMart/docs/latex/main.tex" 1763592757 39293 18cc6567773c6b4e8f9a993711b2cf6a ""
+  "c:/Users/andre/Projeto/ECM401_DataMart/docs/latex/main.tex" 1763607287 40525 ac109172f87c2342e1e486a5dc0d872d ""
   "images/arquitetura.png" 1763588286 242240 3aab188e1cf220094d704fc4c89e11a2 ""
   "images/brayton.png" 1763581352 35370 f7f24630d1ccc55474f5c8b03e41b319 ""
   "images/dashboard1.png" 1763590825 481681 9f725328259b9c300e0c798ef1249461 ""
   "images/dashboard2.png" 1763590859 322960 76170e6e5e22fd9b2e1b53ba602ce914 ""
   "images/dashboard3.png" 1763590889 307254 dcbcc25e13ec03a48b50f1d8cd441bac ""
   "images/medallion_architecture.png" 1763581355 812510 83cac1a6ea76135174eae5ef1a777ea1 ""
+  "images/oltp.jpeg" 1763607090 156829 d3fa6c13cc749c1c25c01daa2d86a3ae ""
   "images/terabytes_iot_aircraft.png" 1763581357 2127303 ef28839bfe7cb61f3cc5eb29786f6498 ""
   "images/turbofan_model.png" 1763581368 3335452 0e9a067a1bc82355cf8cb882a20d81bf ""
-  "main.aux" 1763592757 20922 900390a7dd398811a42d1404d2928107 "pdflatex"
-  "main.bbl" 1763592755 1036 aed83721223a96790aba91b7f2d3f6dc "bibtex main"
-  "main.tex" 1763592757 39293 18cc6567773c6b4e8f9a993711b2cf6a ""
-  "main.toc" 1763592757 3539 182e1e3b8ad0eaa08fe6e099e2a34a96 "pdflatex"
+  "main.aux" 1763607292 22317 a55469281abc336706add780f2b7e4e9 "pdflatex"
+  "main.bbl" 1763607290 1036 aed83721223a96790aba91b7f2d3f6dc "bibtex main"
+  "main.tex" 1763607287 40525 ac109172f87c2342e1e486a5dc0d872d ""
+  "main.toc" 1763607292 3724 680da57c2dcb040f858fd9d33af24b8d "pdflatex"
   (generated)
   "main.aux"
   "main.log"
