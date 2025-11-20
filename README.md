@@ -6,7 +6,8 @@ Este projeto implementa um pipeline de Business Intelligence (BI) focado na Manu
 
 > O trabalho foi desenvolvido para aprovação na disciplina ECM401 Banco de Dados, do Instituto Mauá de Tecnologia.
 
-O relatório do projeto está disponível em: [📄 Relatório do Projeto](relatorio.pdf).
+- O relatório do projeto está disponível em: [📄 Relatório do Projeto](relatorio.pdf).
+- O painel interativo (dashboard) Power BI está disponível em: [📊 Dashboard](dashboard.pbix).
 
 ## Integrantes do Grupo 
 
