@@ -150,6 +150,27 @@ O sucesso da plataforma de BI será medido pela sua capacidade de responder às 
 
 A construção da plataforma de Business Intelligence (BI) proposta neste trabalho seguirá as etapas clássicas de um projeto de Data Warehouse, conforme as abordagens de Kimball e Inmon, adaptadas ao contexto de engenharia de confiabilidade e ao domínio do conjunto de dados C-MAPSS. A metodologia engloba desde a compreensão do domínio e estrutura dos dados até sua modelagem dimensional e integração em um ambiente analítico, possibilitando o monitoramento da saúde de frota de motores turbofan simulados.
 
+\section{Modelo Lógico Relacional (OLTP)}
+\label{sec:modelo_oltp}
+
+O Modelo Lógico Relacional representa a base operacional de onde os dados do C-MAPSS seriam extraídos. Ele foi normalizado para a Terceira Forma Normal (3NF) para garantir a integridade e otimizar as transações. O script SQL que gera o OLTP pode ser encontrado na pasta 'bronze' dentro da pasta 'sql'. O diagrama, conforme gerado pelo MySQL Workbench, é apresentado na Figura \ref{fig:diagrama_oltp}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{oltp.jpeg} 
+    \caption{Modelo Lógico Relacional (OLTP) da Base Operacional C-MAPSS}
+    \label{fig:diagrama_oltp}
+\end{figure}
+
+\subsection{Tabelas do Modelo OLTP}
+
+\begin{itemize}
+    \item \textbf{TAB\_MOTOR\_OLTP:} Armazena dados estáticos do motor, identificado por sua chave natural (dataset\_id, unit\_nr).
+    \item \textbf{TAB\_CONFIGURACAO\_OLTP:} Armazena as condições operacionais únicas (setting1, setting2, setting3).
+    \item \textbf{TAB\_LEITURA\_CICLO\_OLTP:} Tabela de fatos transacionais que registra as leituras dos sensores em um ciclo específico, referenciando as tabelas de motor e configuração.
+\end{itemize}
+
+
 \section{Dataset NASA C-MAPSS}
 
 O conjunto de dados C-MAPSS (Commercial Modular Aero-Propulsion System Simulation), desenvolvido pela NASA, é amplamente reconhecido como referência para pesquisas em Prognóstico e Gerenciamento de Saúde (PHM — \textit{Prognostics and Health Management}). Ele foi gerado por um modelo de simulação de alta fidelidade de motores turbofan comerciais, conforme descrito em \cite{saxena2008damage}.
